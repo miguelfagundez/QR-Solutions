@@ -1,6 +1,6 @@
 # QR Solutions
 
-A new Flutter project.
+A Flutter apps that scan barcode/QR on both Android and iOS devices.
 
 ## Getting Started
 
