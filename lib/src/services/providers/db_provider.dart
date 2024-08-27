@@ -23,7 +23,7 @@ class DBProvider {
     return _database;
   }
 
-  Future<Database?> initDatabase() async {
+  Future<Database> initDatabase() async {
     Directory directory = await getApplicationCacheDirectory();
     final path = join(directory.path, Constants.databaseName);
 
@@ -67,5 +67,53 @@ class DBProvider {
     final result = db?.insert('Scans', model.toMap());
 
     return result;
+  }
+
+  // SELECT registers
+  Future<ScanModel?> getScanById(int id) async {
+    final db = await database;
+    final result = await db?.query('Scans', where: 'id = ?', whereArgs: [id]);
+
+    ScanModel? scan;
+
+    // return result!.isNotEmpty ? ScanModel.fromMap(result.first) : null;
+    if (result != null) {
+      if (result.isNotEmpty) {
+        scan = ScanModel.fromMap(result.first);
+      }
+    }
+
+    return scan;
+  }
+
+  Future<List<ScanModel>> getScans() async {
+    final db = await database;
+    final result = await db?.query('Scans');
+
+    List<ScanModel> scans = [];
+
+    if (result != null) {
+      if (result.isNotEmpty) {
+        scans = result.map((e) => ScanModel.fromMap(e)).toList();
+      }
+    }
+
+    return scans;
+  }
+
+  Future<List<ScanModel>> getScansByType(String type) async {
+    final db = await database;
+    final result =
+        await db?.query('Scans', where: 'type = ?', whereArgs: [type]);
+
+    List<ScanModel> scans = [];
+
+    if (result != null) {
+      if (result.isNotEmpty) {
+        scans = result.map((e) => ScanModel.fromMap(e)).toList();
+      }
+    }
+
+    return scans;
   }
 }

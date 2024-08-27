@@ -27,8 +27,11 @@ class HomePage extends StatelessWidget {
     _pageIndex = uiState.indexSelected;
 
     DBProvider.db.database;
-    final tempScan = ScanModel(value: 'https://miguelfagundez.com');
-    DBProvider.db.getScan(tempScan);
+    //final tempScan = ScanModel(value: 'https://miguelfagundez.com');
+    //DBProvider.db.getScan(tempScan);
+    // ignore: avoid_print
+    //DBProvider.db.getScans().then(print);
+    DBProvider.db.getScansByType('http').then(print);
 
     return Scaffold(
       body: IndexedStack(
