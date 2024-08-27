@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
     // ignore: avoid_print
     //DBProvider.db.getScans().then(print);
     DBProvider.db.getScansByType('http').then(print);
+    //DBProvider.db.deleteAllScans().then(print);
 
     return Scaffold(
       body: IndexedStack(

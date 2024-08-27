@@ -1,5 +1,5 @@
 class Constants {
   // Database
-  static final databaseName = 'scansDB.db';
-  static final databaseVersion = 1;
+  static const databaseName = 'scansDB.db';
+  static const databaseVersion = 1;
 }
