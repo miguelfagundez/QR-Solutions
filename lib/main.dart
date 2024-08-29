@@ -9,6 +9,7 @@ import 'package:qr_solutions/src/pages/history/history_page.dart';
 import 'package:qr_solutions/src/pages/maps/maps_page.dart';
 import 'package:qr_solutions/src/pages/settings/settings_page.dart';
 import 'package:qr_solutions/src/pages/web/web_page.dart';
+import 'package:qr_solutions/src/services/providers/scans_provider.dart';
 import 'package:qr_solutions/src/services/providers/ui_state.dart';
 import 'package:qr_solutions/src/theme/qr_theme.dart';
 
@@ -22,6 +23,7 @@ class QRSolutionsApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UiState()),
+        ChangeNotifierProvider(create: (_) => ScanProvider()),
       ],
       child: MyApp(),
     );

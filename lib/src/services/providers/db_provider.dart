@@ -47,7 +47,7 @@ class DBProvider {
     );
   }
 
-  Future<int?> getScanRaw(ScanModel model) async {
+  Future<int?> insertScanRaw(ScanModel model) async {
     final id = model.id;
     final scanType = model.type;
     final scanValue = model.value;
@@ -62,7 +62,7 @@ class DBProvider {
     return result;
   }
 
-  Future<int?> getScan(ScanModel model) async {
+  Future<int?> insertScan(ScanModel model) async {
     final db = await database;
     final result = db?.insert('Scans', model.toMap());
 
