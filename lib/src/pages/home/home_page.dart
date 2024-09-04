@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:qr_solutions/src/pages/creator/creator_page.dart';
 import 'package:qr_solutions/src/pages/history/history_page.dart';
+import 'package:qr_solutions/src/services/providers/scans_provider.dart';
 import 'package:qr_solutions/src/widgets/custom_scan_button.dart';
 import 'package:qr_solutions/src/services/providers/ui_state.dart';
 import 'package:qr_solutions/src/pages/settings/settings_page.dart';
@@ -27,12 +28,9 @@ class HomePage extends StatelessWidget {
     _pageIndex = uiState.indexSelected;
 
     DBProvider.db.database;
-    //final tempScan = ScanModel(value: 'https://miguelfagundez.com');
-    //DBProvider.db.getScan(tempScan);
-    // ignore: avoid_print
-    //DBProvider.db.getScans().then(print);
-    DBProvider.db.getScansByType('http').then(print);
-    //DBProvider.db.deleteAllScans().then(print);
+
+    final scanProvider = Provider.of<ScanProvider>(context);
+    scanProvider.loadScans();
 
     return Scaffold(
       body: IndexedStack(
