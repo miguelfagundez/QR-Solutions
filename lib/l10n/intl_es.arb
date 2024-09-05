@@ -4,5 +4,9 @@
   "home": "Home",
   "history": "Historial",
   "settings": "Herramientas",
-  "creator": "Crear QR"
+  "creator": "Crear QR",
+  "confirmTitle": "Confirmar",
+  "confirmBody": "Esta seguro de eliminar todos los scaners permanentemente?",
+  "yes": "Si",
+  "no": "No"
 }

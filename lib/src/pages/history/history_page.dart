@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/src/services/providers/scans_provider.dart';
 import 'package:qr_solutions/src/utils/convert.dart';
 
@@ -17,7 +18,32 @@ class HistoryPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  title: Text(AppLocalizations.of(context)!
+                      .confirmTitle), //Text('Confirm'),
+                  content: Text(AppLocalizations.of(context)!.confirmBody),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          final scanProvider =
+                              Provider.of<ScanProvider>(context, listen: false);
+
+                          scanProvider.deleteAllScans();
+                          Navigator.pop(context);
+                        },
+                        child: Text(AppLocalizations.of(context)!.yes)),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(AppLocalizations.of(context)!.no)),
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),

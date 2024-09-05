@@ -22,5 +22,21 @@
   "creator": "Creator",
   "@creator": {
     "description": "Creator"
+  },
+  "confirmTitle": "Confirm",
+  "@confirmTitle": {
+    "description": "Confirm"
+  },
+  "confirmBody": "Do you want to delete all scans?",
+  "@confirmbody": {
+    "description": "confirmbody"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "yes"
+  },
+  "no": "No",
+  "@no": {
+    "description": "no"
   }
 }
