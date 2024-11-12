@@ -4,14 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:qr_solutions/l10n/l10n.dart';
+import 'package:qr_solutions/src/theme/qr_theme.dart';
 import 'package:qr_solutions/src/pages/home/home_page.dart';
 import 'package:qr_solutions/src/pages/history/history_page.dart';
-import 'package:qr_solutions/src/pages/maps/maps_page.dart';
-import 'package:qr_solutions/src/pages/settings/settings_page.dart';
-import 'package:qr_solutions/src/pages/web/web_page.dart';
-import 'package:qr_solutions/src/services/providers/scans_provider.dart';
 import 'package:qr_solutions/src/services/providers/ui_state.dart';
-import 'package:qr_solutions/src/theme/qr_theme.dart';
+import 'package:qr_solutions/src/pages/settings/settings_page.dart';
+import 'package:qr_solutions/src/services/providers/scans_provider.dart';
 
 void main() => runApp(const QRSolutionsApp());
 
@@ -43,9 +41,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (_) => HomePage(),
-        'web': (_) => const WebPage(),
         'history': (_) => const HistoryPage(),
-        'maps': (_) => const MapsPage(),
         'settings': (_) => const SettingsPage()
       },
       theme: isDark
