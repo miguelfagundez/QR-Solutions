@@ -30,4 +30,23 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+        <queries>
+        <!-- Checking whether a browser is available -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- Checking for call support -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="tel" />
+        </intent>
+        <!-- Checking for email support -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+            <data android:scheme="mailto"/>
+        </intent>
+    </queries>
 </manifest>
