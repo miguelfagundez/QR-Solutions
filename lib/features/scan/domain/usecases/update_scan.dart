@@ -9,7 +9,7 @@ class UpdateScanUseCase {
 
   UpdateScanUseCase({required this.repository});
 
-  Future<Either<Failure, int>> call(Scan scan) {
-    return repository.updateScan(scan);
+  Future<Either<Failure, int>> call(Scan scan) async {
+    return await repository.updateScan(scan);
   }
 }

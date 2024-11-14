@@ -8,7 +8,7 @@ class DeleteScanUseCase {
 
   DeleteScanUseCase({required this.repository});
 
-  Future<Either<Failure, int>> call(int id) {
-    return repository.deleteScan(id);
+  Future<Either<Failure, int>> call(int id) async {
+    return await repository.deleteScan(id);
   }
 }

@@ -7,7 +7,7 @@ class InserScanUseCase {
 
   InserScanUseCase({required this.repository});
 
-  Future<Either<Failure, int>> call(String value) {
-    return repository.insertScan(value);
+  Future<Either<Failure, int>> call(String value) async {
+    return await repository.insertScan(value);
   }
 }

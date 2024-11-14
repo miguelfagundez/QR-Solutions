@@ -9,7 +9,7 @@ class GetScanUseCase {
 
   GetScanUseCase({required this.repository});
 
-  Future<Either<Failure, Scan>> call(int id) {
-    return repository.getScan(id);
+  Future<Either<Failure, Scan>> call(int id) async {
+    return await repository.getScan(id);
   }
 }

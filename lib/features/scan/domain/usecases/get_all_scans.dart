@@ -9,7 +9,7 @@ class GetAllScansUseCase {
 
   GetAllScansUseCase({required this.repository});
 
-  Future<Either<Failure, List<Scan>>> call() {
-    return repository.getAllScans();
+  Future<Either<Failure, List<Scan>>> call() async {
+    return await repository.getAllScans();
   }
 }
