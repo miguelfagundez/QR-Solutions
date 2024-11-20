@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:dartz/dartz.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,13 +8,14 @@ import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/features/scan/data/models/scan_model.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../domain/entities/scan.dart';
 
 abstract class ScanSqliteDataSource {
   Future<Database?> openScanDatabase();
-  Future<int?> insertScan(ScanModel model);
+  Future<int?> insertScan(Scan model);
   Future<ScanModel?> getScan(int id);
   Future<List<ScanModel>> getAllScans();
-  Future<int?> updateScan(ScanModel scan);
+  Future<int?> updateScan(Scan scan);
   Future<int?> deleteScan(int id);
   Future<int?> deleteAllScans();
 }
@@ -35,51 +35,77 @@ class ScanSqliteDataSourceImpl implements ScanSqliteDataSource {
 
   @override
   Future<int?> deleteAllScans() async {
-    final db = await database;
-    final res = await db?.delete('Scans');
-    return res;
+    try {
+      final db = await database;
+      final res = await db?.delete('Scans');
+      return res;
+    } catch (error) {
+      debugPrint(error.toString());
+      throw (LocalDataBaseFailure(message: error.toString(), code: ''));
+    }
   }
 
   @override
   Future<int?> deleteScan(int id) async {
-    final db = await database;
-    final res = await db?.delete('Scans', where: 'id = ?', whereArgs: [id]);
-    return res;
+    try {
+      final db = await database;
+      final res = await db?.delete('Scans', where: 'id = ?', whereArgs: [id]);
+      return res;
+    } catch (error) {
+      debugPrint(error.toString());
+      throw (LocalDataBaseFailure(message: error.toString(), code: ''));
+    }
   }
 
   @override
   Future<List<ScanModel>> getAllScans() async {
-    final db = await database;
-    final res = await db?.query('Scans');
+    try {
+      final db = await database;
+      final res = await db?.query('Scans');
 
-    if (res != null) {
-      return res.isNotEmpty
-          ? res.map((s) => ScanModel.fromJson(s)).toList()
-          : [];
-    } else {
-      return [];
+      if (res != null) {
+        return res.isNotEmpty
+            ? res.map((s) => ScanModel.fromJson(s)).toList()
+            : [];
+      } else {
+        return [];
+      }
+    } catch (error) {
+      debugPrint(error.toString());
+      throw (LocalDataBaseFailure(message: error.toString(), code: ''));
     }
   }
 
   @override
   Future<ScanModel?> getScan(int id) async {
-    final db = await database;
-    final res = await db?.query('Scans', where: 'id = ?', whereArgs: [id]);
+    try {
+      final db = await database;
+      final res = await db?.query('Scans', where: 'id = ?', whereArgs: [id]);
 
-    if (res != null) {
-      return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
-    } else {
-      return null;
+      if (res != null) {
+        return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      debugPrint(error.toString());
+      throw (LocalDataBaseFailure(message: error.toString(), code: ''));
     }
   }
 
   @override
-  Future<int?> insertScan(ScanModel scan) async {
-    final db = await database;
-    final res = await db?.insert('Scans', scan.toJson());
+  Future<int?> insertScan(Scan scan) async {
+    try {
+      final db = await database;
+      final res =
+          await db?.insert('Scans', ScanModel.fromEntity(scan).toJson());
 
-    // Es el ID del último registro insertado;
-    return res;
+      // Es el ID del último registro insertado;
+      return res;
+    } catch (error) {
+      debugPrint(error.toString());
+      throw (LocalDataBaseFailure(message: error.toString(), code: ''));
+    }
   }
 
   @override
@@ -105,11 +131,16 @@ class ScanSqliteDataSourceImpl implements ScanSqliteDataSource {
   }
 
   @override
-  Future<int?> updateScan(ScanModel scan) async {
-    final db = await database;
-    final res = await db
-        ?.update('Scans', scan.toJson(), where: 'id = ?', whereArgs: [scan.id]);
+  Future<int?> updateScan(Scan scan) async {
+    try {
+      final db = await database;
+      final res = await db?.update('Scans', ScanModel.fromEntity(scan).toJson(),
+          where: 'id = ?', whereArgs: [scan.id]);
 
-    return res;
+      return res;
+    } catch (error) {
+      debugPrint(error.toString());
+      throw (LocalDataBaseFailure(message: error.toString(), code: ''));
+    }
   }
 }

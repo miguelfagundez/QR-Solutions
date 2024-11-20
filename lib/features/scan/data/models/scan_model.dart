@@ -22,4 +22,8 @@ class ScanModel extends Scan {
       "value": value,
     };
   }
+
+  factory ScanModel.fromEntity(Scan scan) {
+    return ScanModel(value: scan.value, id: scan.id, type: scan.type);
+  }
 }
