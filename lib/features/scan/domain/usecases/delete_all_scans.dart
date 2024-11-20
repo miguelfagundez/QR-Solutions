@@ -8,7 +8,7 @@ class DeleteAllScansUseCase {
 
   DeleteAllScansUseCase({required this.repository});
 
-  Future<Either<Failure, int>> call() async {
+  Future<Either<Failure, int?>> call() async {
     return await repository.deleteAllScans();
   }
 }
