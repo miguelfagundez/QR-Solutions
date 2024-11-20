@@ -5,7 +5,7 @@ import '../../../../core/error/failures.dart';
 
 abstract class ScanRepository {
   Future<Either<Failure, dynamic>> openScanDatabase(int version);
-  Future<Either<Failure, int>> insertScan(String value);
+  Future<Either<Failure, int>> insertScan(Scan scan);
   Future<Either<Failure, Scan>> getScan(int id);
   Future<Either<Failure, List<Scan>>> getAllScans();
   Future<Either<Failure, int>> updateScan(Scan scan);
