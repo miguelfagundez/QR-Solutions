@@ -8,7 +8,7 @@ class OpenScanDatabaseUseCase {
 
   OpenScanDatabaseUseCase({required this.repository});
 
-  Future<Either<Failure, dynamic>> call(int version) async {
-    return await repository.openScanDatabase(version);
+  Future<Either<Failure, dynamic>> call() async {
+    return await repository.openScanDatabase();
   }
 }

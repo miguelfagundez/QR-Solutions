@@ -4,7 +4,7 @@ import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import '../../../../core/error/failures.dart';
 
 abstract class ScanRepository {
-  Future<Either<Failure, dynamic>> openScanDatabase(int version);
+  Future<Either<Failure, dynamic>> openScanDatabase();
   Future<Either<Failure, int>> insertScan(Scan scan);
   Future<Either<Failure, Scan>> getScan(int id);
   Future<Either<Failure, List<Scan>>> getAllScans();
