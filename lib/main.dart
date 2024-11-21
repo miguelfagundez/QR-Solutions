@@ -36,7 +36,12 @@ class MyApp extends StatelessWidget {
         HISTORY_ROUTE: (_) => const HistoryPage(),
         SETTINGS_ROUTE: (_) => const SettingsPage(),
       },
-      locale: const Locale('en'), //uiProvider.getCurrentLocale,
+      theme: ThemeData(
+          primaryColor: PRIMARY_COLOR,
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: PRIMARY_COLOR,
+          )),
+      locale: const Locale(APP_LOCALE_EN), //uiProvider.getCurrentLocale,
       supportedLocales: L10n.all,
       localizationsDelegates: const [
         AppLocalizations.delegate,
