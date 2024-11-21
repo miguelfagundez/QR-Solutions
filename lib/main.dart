@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:qr_solutions/core/utils/constants.dart';
+import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
+import 'package:qr_solutions/features/scan/presentation/pages/home_page.dart';
+import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
 
 import 'package:qr_solutions/l10n/l10n.dart';
 
@@ -25,10 +29,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'QR Solutions',
-      initialRoute: 'home',
+      title: APP_NAME,
+      initialRoute: INITIAL_ROUTE,
       routes: {
-        'home': (_) => HomePage(),
+        HOME_ROUTE: (_) => const HomePage(),
+        HISTORY_ROUTE: (_) => const HistoryPage(),
+        SETTINGS_ROUTE: (_) => const SettingsPage(),
       },
       locale: const Locale('en'), //uiProvider.getCurrentLocale,
       supportedLocales: L10n.all,
@@ -39,13 +45,5 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }
