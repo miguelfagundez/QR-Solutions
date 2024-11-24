@@ -8,5 +8,6 @@
   "confirmTitle": "Confirmar",
   "confirmBody": "Esta seguro de eliminar todos los scaners permanentemente?",
   "yes": "Si",
-  "no": "No"
+  "no": "No",
+  "undo": "Deshacer"  
 }

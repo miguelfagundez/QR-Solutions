@@ -38,5 +38,9 @@
   "no": "No",
   "@no": {
     "description": "no"
+  },
+  "undo": "Undo",
+  "@no": {
+    "description": "undo"
   }
 }
