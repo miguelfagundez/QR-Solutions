@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
+import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
 import 'package:qr_solutions/share/presentation/pages/home_page.dart';
 import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
 
@@ -16,7 +18,13 @@ class QRSolutionsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyApp();
+    // Bloc
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => UiBloc()),
+      ],
+      child: MyApp(),
+    );
   }
 }
 

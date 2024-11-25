@@ -50,6 +50,7 @@ dependencies:
   # Bloc para manejar el estado
   # https://pub.dev/packages/flutter_bloc
   flutter_bloc: ^8.1.5
+  bloc: ^8.0.1
   # Programacion funcional
   # https://pub.dev/packages/dartz
   dartz: ^0.10.1
