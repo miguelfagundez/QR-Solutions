@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
+import 'package:qr_solutions/di.dart';
+import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
 import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
 import 'package:qr_solutions/share/presentation/pages/home_page.dart';
@@ -11,7 +14,11 @@ import 'package:qr_solutions/features/settings/presentation/pages/settings_page.
 
 import 'package:qr_solutions/l10n/l10n.dart';
 
-void main() => runApp(const QRSolutionsApp());
+void main() async {
+  // Init Scan Bloc dependencies
+  await init();
+  runApp(const QRSolutionsApp());
+}
 
 class QRSolutionsApp extends StatelessWidget {
   const QRSolutionsApp({super.key});
@@ -22,6 +29,7 @@ class QRSolutionsApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => UiBloc()),
+        BlocProvider(create: (_) => GetIt.instance.get<ScanBloc>()),
       ],
       child: MyApp(),
     );
@@ -40,7 +48,7 @@ class MyApp extends StatelessWidget {
       title: APP_NAME,
       initialRoute: INITIAL_ROUTE,
       routes: {
-        HOME_ROUTE: (_) => HomePage(),
+        HOME_ROUTE: (_) => const HomePage(),
         HISTORY_ROUTE: (_) => const HistoryPage(),
         SETTINGS_ROUTE: (_) => const SettingsPage(),
       },

@@ -57,6 +57,7 @@ dependencies:
   # Inyeccion de dependencias
   # https://pub.dev/packages/get_it
   get_it: ^7.6.7
+  url_launcher: ^6.0.0
 
 dev_dependencies:
   flutter_test:

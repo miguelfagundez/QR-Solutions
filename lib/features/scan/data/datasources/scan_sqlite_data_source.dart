@@ -22,6 +22,9 @@ abstract class ScanSqliteDataSource {
 
 class ScanSqliteDataSourceImpl implements ScanSqliteDataSource {
   static Database? _database;
+
+  ScanSqliteDataSourceImpl();
+
   static final ScanSqliteDataSourceImpl db = ScanSqliteDataSourceImpl._();
   ScanSqliteDataSourceImpl._();
 
