@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
-import 'package:qr_solutions/features/scan/data/models/scan_model.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 

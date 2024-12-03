@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_solutions/core/utils/scan_types.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -1,15 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:qr_solutions/core/error/failures.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
-import 'package:qr_solutions/features/scan/domain/usecases/delete_all_scans.dart';
-import 'package:qr_solutions/features/scan/domain/usecases/delete_scan.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/get_all_scans.dart';
-import 'package:qr_solutions/features/scan/domain/usecases/get_scan.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/insert_scan.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/open_scan_database.dart';
-import 'package:qr_solutions/features/scan/domain/usecases/update_scan.dart';
 
 part 'scan_event.dart';
 part 'scan_state.dart';
