@@ -5,12 +5,12 @@ abstract class UiState {
   final int indexSelected;
 
   const UiState({
-    this.indexSelected = 0,
+    required this.indexSelected,
   });
 }
 
 class UiInitialState extends UiState {
-  const UiInitialState() : super(indexSelected: 1);
+  const UiInitialState() : super(indexSelected: 0);
 }
 
 class UiIndexChangeState extends UiState {

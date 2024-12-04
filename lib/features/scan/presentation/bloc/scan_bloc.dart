@@ -42,7 +42,6 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
         (insertFailure) =>
             emit(ScanDatabaseFailureState(failure: insertFailure)),
         (insertValue) {
-      state.isUpdated = true;
       debugPrint('Insert scan into database, $insertValue');
     });
   }
@@ -54,8 +53,8 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
         (getScansFailure) =>
             emit(ScanDatabaseFailureState(failure: getScansFailure)),
         (listOfScans) {
-      state.isUpdated = false;
       debugPrint('Getting scans into database, ${listOfScans.length}');
+      emit(GetAllScansState(listOfScans));
     });
   }
 }

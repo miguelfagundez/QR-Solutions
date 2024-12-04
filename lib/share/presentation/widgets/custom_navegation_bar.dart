@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
 
 class CustomNavigationBar extends StatelessWidget {
@@ -24,9 +25,16 @@ class CustomNavigationBar extends StatelessWidget {
           )
         ],
         onTap: (index) {
-          debugPrint(index.toString());
           BlocProvider.of<UiBloc>(context, listen: false)
               .add(IndexSelectedEvent(indexSelected: index));
+          // TODO - Delete - Testing purposes
+          if (index == 0) {
+            debugPrint('index 0');
+          } else {
+            debugPrint('index 1');
+            BlocProvider.of<ScanBloc>(context, listen: false)
+                .add(GetAllScansEvent());
+          }
         },
       );
     });
