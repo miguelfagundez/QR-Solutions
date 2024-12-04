@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -59,9 +60,17 @@ class HistoryPage extends StatelessWidget {
                       ),
                     ),
                     child: ListTile(
-                      title: Text(item!.value.toString()),
-                      // ignore: avoid_print
-                      onTap: () => print(item.value),
+                      leading: Icon(
+                        convertUiTypeToIcon(item?.type ?? ''),
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      title: Text(item?.value ?? ''),
+                      subtitle: Text(convertUiType(item?.type ?? '')),
+                      trailing: const Icon(
+                        Icons.keyboard_arrow_right,
+                        color: Colors.grey,
+                      ),
+                      onTap: () => debugPrint('${item?.id}'),
                     ),
                   );
                 },
