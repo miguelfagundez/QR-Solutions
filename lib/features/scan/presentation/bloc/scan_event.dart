@@ -15,6 +15,11 @@ class InsertScanEvent extends ScanEvent {
   InsertScanEvent({required this.scan});
 }
 
+class DeleteScanEvent extends ScanEvent {
+  final int id;
+  DeleteScanEvent({required this.id});
+}
+
 class GetAllScansEvent extends ScanEvent {
   GetAllScansEvent();
 }

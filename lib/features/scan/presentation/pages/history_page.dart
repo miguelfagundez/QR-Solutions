@@ -37,6 +37,11 @@ class _HistoryPageState extends State<HistoryPage> {
                     // Provide a function that tells the app
                     // what to do after an item has been swiped away.
                     onDismissed: (direction) {
+                      debugPrint('id=${item?.id}');
+                      debugPrint('value=${item?.value}');
+                      debugPrint('type=${item?.type}');
+                      BlocProvider.of<ScanBloc>(context, listen: false)
+                          .add(DeleteScanEvent(id: item!.id!));
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content:
