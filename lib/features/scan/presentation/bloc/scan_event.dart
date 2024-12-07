@@ -9,6 +9,8 @@ class InitialStateEvent extends ScanEvent {
 
 class OpenScanDatabaseEvent extends ScanEvent {}
 
+class DeleteAllScansEvent extends ScanEvent {}
+
 class InsertScanEvent extends ScanEvent {
   final Scan scan;
 

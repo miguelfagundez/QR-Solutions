@@ -5,14 +5,26 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 
-class HistoryPage extends StatelessWidget {
+class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
+
+  @override
+  State<HistoryPage> createState() => _HistoryPageState();
+}
+
+class _HistoryPageState extends State<HistoryPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    BlocProvider.of<ScanBloc>(context, listen: false).add(GetAllScansEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<ScanBloc, ScanState>(builder: (_, state) {
-        return state.isUpdated!
+        return (state.listOfScans?.isNotEmpty ?? false)
             ? ListView.builder(
                 itemCount: state.listOfScans?.length,
                 itemBuilder: (context, index) {
@@ -25,11 +37,6 @@ class HistoryPage extends StatelessWidget {
                     // Provide a function that tells the app
                     // what to do after an item has been swiped away.
                     onDismissed: (direction) {
-                      // Remove the item from the data source.
-                      // setState(() {
-                      //   items.removeAt(index);
-                      // });
-
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content:
@@ -70,7 +77,7 @@ class HistoryPage extends StatelessWidget {
                         Icons.keyboard_arrow_right,
                         color: Colors.grey,
                       ),
-                      onTap: () => debugPrint('${item?.id}'),
+                      onTap: () => launchScanIfPossible(context, item!),
                     ),
                   );
                 },

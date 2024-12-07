@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:provider/provider.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
+import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
 import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
 import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
@@ -23,8 +24,6 @@ class _HomePageState extends State<HomePage> {
     const SettingsPage(),
   ];
 
-  final items = List<String>.generate(20, (i) => 'Item ${i + 1}');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +44,8 @@ class _HomePageState extends State<HomePage> {
                   actions: [
                     TextButton(
                         onPressed: () {
+                          BlocProvider.of<ScanBloc>(context, listen: false)
+                              .add(DeleteAllScansEvent());
                           Navigator.pop(context);
                         },
                         child: Text(AppLocalizations.of(context)!.yes)),

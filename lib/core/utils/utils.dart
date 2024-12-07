@@ -4,6 +4,10 @@ import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 launchScanIfPossible(BuildContext context, Scan scan) async {
+  debugPrint('The scan.type = ${scan.type}');
+  debugPrint('The scan.value = ${scan.value}');
+  debugPrint('The scan.id = ${scan.id}');
+
   if (scan.type == 'http') {
     debugPrint('It is a website..');
     final url = scan.value;
@@ -44,12 +48,8 @@ launchScanIfPossible(BuildContext context, Scan scan) async {
     }
   } else if (scan.type == 'geo') {
     debugPrint('It is a map..');
-    debugPrint('The scan.type = ${scan.type}');
-    debugPrint('The scan.value = ${scan.value}');
   } else {
     debugPrint('It is another format..');
-    debugPrint('The scan.type = ${scan.type}');
-    debugPrint('The scan.value = ${scan.value}');
   }
 }
 
