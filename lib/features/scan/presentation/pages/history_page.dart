@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 
@@ -85,7 +86,10 @@ class _HistoryPageState extends State<HistoryPage> {
                         Icons.keyboard_arrow_right,
                         color: Colors.grey,
                       ),
-                      onTap: () => launchScanIfPossible(context, item!),
+                      onTap: () {
+                        Navigator.pushNamed(context, SCAN_DETAILS_ROUTE);
+                        //launchScanIfPossible(context, item!);
+                      },
                     ),
                   );
                 },

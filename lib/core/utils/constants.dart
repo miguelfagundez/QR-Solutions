@@ -15,6 +15,7 @@ const INITIAL_ROUTE = 'home';
 const HOME_ROUTE = 'home';
 const HISTORY_ROUTE = 'history';
 const SETTINGS_ROUTE = 'settings';
+const SCAN_DETAILS_ROUTE = 'details';
 
 // App Theme
 const PRIMARY_COLOR = Colors.deepPurple;

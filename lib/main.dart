@@ -7,6 +7,7 @@ import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/di.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
+import 'package:qr_solutions/features/scan/presentation/pages/scan_details_page.dart';
 import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
 import 'package:qr_solutions/share/presentation/pages/home_page.dart';
 import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         HOME_ROUTE: (_) => const HomePage(),
         HISTORY_ROUTE: (_) => const HistoryPage(),
         SETTINGS_ROUTE: (_) => const SettingsPage(),
+        SCAN_DETAILS_ROUTE: (_) => const ScanDetailsPage(),
       },
       theme: ThemeData(
           primaryColor: PRIMARY_COLOR,
