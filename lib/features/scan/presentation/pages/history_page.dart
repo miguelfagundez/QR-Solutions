@@ -52,6 +52,11 @@ class _HistoryPageState extends State<HistoryPage> {
                             onPressed: () {
                               // Code to execute.
                               // return item into database
+                              debugPrint('item.id=${item?.id}');
+                              debugPrint('item.value=${item?.value}');
+                              debugPrint('item.type=${item?.type}');
+                              BlocProvider.of<ScanBloc>(context, listen: false)
+                                  .add(InsertScanEvent(scan: item));
                             },
                           ),
                         ),
