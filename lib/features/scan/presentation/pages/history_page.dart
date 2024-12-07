@@ -46,9 +46,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             label: AppLocalizations.of(context)!.undo,
                             onPressed: () {
                               // Code to execute.
-                              // setState(() {
-                              //   items.add('New Item ${index + 1}');
-                              // });
+                              // return item into database
                             },
                           ),
                         ),

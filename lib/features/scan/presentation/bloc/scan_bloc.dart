@@ -5,7 +5,6 @@ import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/delete_all_scans.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/get_all_scans.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/insert_scan.dart';
-import 'package:qr_solutions/features/scan/domain/usecases/open_scan_database.dart';
 
 part 'scan_event.dart';
 part 'scan_state.dart';
@@ -16,7 +15,6 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
   final GetAllScansUseCase _getAllScansUseCase;
   // final GetScanUseCase _getScanUseCase;
   final InsertScanUseCase _insertScanUseCase;
-  final OpenScanDatabaseUseCase _openScanDatabaseUseCase;
   // final UpdateScanUseCase _updateScanUseCase;
 
   ScanBloc(
@@ -25,11 +23,9 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     this._getAllScansUseCase,
     // this._getScanUseCase,
     this._insertScanUseCase,
-    this._openScanDatabaseUseCase,
     // this._updateScanUseCase,
   ) : super(ScanInitialState()) {
     on<DeleteAllScansEvent>(_deleteAllScansEvent);
-    on<OpenScanDatabaseEvent>(_openScanDatabaseEvent);
     on<InsertScanEvent>(_insertLastScanState);
     on<GetAllScansEvent>(_getAllScansEvent);
   }
@@ -47,17 +43,6 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     });
   }
 
-  _openScanDatabaseEvent(
-      OpenScanDatabaseEvent event, Emitter<ScanState> emit) async {
-    final resp = await _openScanDatabaseUseCase();
-    resp.fold(
-        (insertFailure) =>
-            emit(ScanDatabaseFailureState(failure: insertFailure)),
-        (insertValue) {
-      debugPrint('Database was created or opened, $insertValue');
-    });
-  }
-
   _insertLastScanState(InsertScanEvent event, Emitter<ScanState> emit) async {
     final resp = await _insertScanUseCase(event.scan);
 
@@ -67,6 +52,8 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
             emit(ScanDatabaseFailureState(failure: insertFailure)),
         (insertValue) {
       debugPrint('Insert scan into database, $insertValue');
+      // Call GetAllScans event to update my new state
+      add(GetAllScansEvent());
     });
   }
 
