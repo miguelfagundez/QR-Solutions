@@ -6,8 +6,12 @@
   "settings": "Herramientas",
   "creator": "Crear QR",
   "confirmTitle": "Confirmar",
-  "confirmBody": "Esta seguro de eliminar todos los scaners permanentemente?",
+  "confirmDeleteAllScansBody": "Esta seguro de eliminar todos los scaners permanentemente?",
+  "confirmDeleteOneScanBody": "Esta seguro de eliminar este scaner permanentemente?",
   "yes": "Si",
   "no": "No",
-  "undo": "Deshacer"  
-}
+  "undo": "Deshacer",
+  "scanType": "Tipo de Scaner",
+  "deleteScan": "Borrar Scaner",
+  "noScanInDatabase": "Ningun Scaner en la Base de Datos"
+  }

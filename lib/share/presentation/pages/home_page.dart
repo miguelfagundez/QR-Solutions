@@ -40,7 +40,8 @@ class _HomePageState extends State<HomePage> {
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text(AppLocalizations.of(context)!.confirmTitle),
-                  content: Text(AppLocalizations.of(context)!.confirmBody),
+                  content: Text(
+                      AppLocalizations.of(context)!.confirmDeleteAllScansBody),
                   actions: [
                     TextButton(
                         onPressed: () {

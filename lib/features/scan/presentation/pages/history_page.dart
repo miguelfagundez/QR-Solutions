@@ -45,8 +45,8 @@ class _HistoryPageState extends State<HistoryPage> {
                           .add(DeleteScanEvent(id: item!.id!));
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content:
-                              Text(AppLocalizations.of(context)!.confirmBody),
+                          content: Text(AppLocalizations.of(context)!
+                              .confirmDeleteAllScansBody),
                           duration: const Duration(seconds: 3),
                           action: SnackBarAction(
                             label: AppLocalizations.of(context)!.undo,
@@ -87,15 +87,16 @@ class _HistoryPageState extends State<HistoryPage> {
                         color: Colors.grey,
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, SCAN_DETAILS_ROUTE);
+                        Navigator.pushNamed(context, SCAN_DETAILS_ROUTE,
+                            arguments: item);
                         //launchScanIfPossible(context, item!);
                       },
                     ),
                   );
                 },
               )
-            : const Center(
-                child: Text('No Scans in Database'),
+            : Center(
+                child: Text(AppLocalizations.of(context)!.noScanInDatabase),
               );
       }),
     );
