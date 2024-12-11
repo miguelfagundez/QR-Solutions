@@ -58,6 +58,10 @@ dependencies:
   # https://pub.dev/packages/get_it
   get_it: ^7.6.7
   url_launcher: ^6.0.0
+  # https://pub.dev/packages/flutter_form_builder
+  flutter_form_builder: ^9.2.1
+  # https://pub.dev/packages/form_builder_validators 
+  form_builder_validators: ^9.1.0
 
 dev_dependencies:
   flutter_test:

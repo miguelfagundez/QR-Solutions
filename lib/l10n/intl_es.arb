@@ -13,5 +13,6 @@
   "undo": "Deshacer",
   "scanType": "Tipo de Scaner",
   "deleteScan": "Borrar Scaner",
-  "noScanInDatabase": "Ningun Scaner en la Base de Datos"
+  "noScanInDatabase": "Ningun Scaner en la Base de Datos",
+  "saveScanInDatabase": "Guardar Scaner"
   }

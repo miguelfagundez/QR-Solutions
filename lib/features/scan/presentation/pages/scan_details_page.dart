@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:qr_solutions/features/scan/presentation/widgets/scan_data_form.dart';
 import 'package:qr_solutions/share/presentation/widgets/outline_scan_button.dart';
 
 class ScanDetailsPage extends StatefulWidget {
@@ -72,19 +73,15 @@ class _ScanDetailsPageState extends State<ScanDetailsPage> {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                color: Colors.red,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${scan.id}'),
-                      Text('${scan.type}'),
-                      Text(scan.value),
-                    ],
-                  ),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ScanDataForm(scan: scan),
+                  ],
                 ),
               ),
             ),
