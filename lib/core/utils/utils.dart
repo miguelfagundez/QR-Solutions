@@ -48,8 +48,14 @@ launchScanIfPossible(BuildContext context, Scan scan) async {
     }
   } else if (scan.type == 'geo') {
     debugPrint('It is a map..');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('It is a map..')),
+    );
   } else {
     debugPrint('It is another format..');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('It is another format..')),
+    );
   }
 }
 

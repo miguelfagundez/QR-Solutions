@@ -88,6 +88,20 @@ class _ScanDetailsPageState extends State<ScanDetailsPage> {
           ),
           OutlineScanButton(
             onTap: () {
+              launchScanIfPossible(context, scan);
+            },
+            widget: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.delete_forever),
+                Text(
+                  AppLocalizations.of(context)!.tryOpenScan,
+                ),
+              ],
+            ),
+          ),
+          OutlineScanButton(
+            onTap: () {
               DeleteScanAction(scan.id!);
             },
             widget: Row(

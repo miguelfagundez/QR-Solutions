@@ -62,5 +62,17 @@
   "saveScanInDatabase": "Save Scan",
   "@saveScanInDatabase": {
     "description": "saveScanInDatabase"
+  },
+  "tryOpenScan": "Try to Open Scan",
+  "@tryOpenScan": {
+    "description": "tryOpenScan"
+  },
+  "scanValueTitle": "Scan value",
+  "@scanValueTitle": {
+    "description": "scanValueTitle"
+  },
+  "scanTypeTitle": "Select the scan type",
+  "@scanTypeTitle": {
+    "description": "scanTypeTitle"
   }
 }
