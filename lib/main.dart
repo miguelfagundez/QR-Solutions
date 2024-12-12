@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
+import 'package:qr_solutions/core/utils/globals.dart';
 import 'package:qr_solutions/di.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: APP_NAME,
+      scaffoldMessengerKey: snackbarKey,
       initialRoute: INITIAL_ROUTE,
       routes: {
         HOME_ROUTE: (_) => const HomePage(),

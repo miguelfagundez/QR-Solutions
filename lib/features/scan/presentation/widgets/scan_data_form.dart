@@ -9,6 +9,7 @@ import 'package:qr_solutions/core/utils/scan_types.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 import 'package:qr_solutions/share/presentation/widgets/outline_scan_button.dart';
 
 class ScanDataForm extends StatefulWidget {
@@ -104,9 +105,7 @@ class _ScanDataFormState extends State<ScanDataForm> {
             onTap: () {
               if (_formKey.currentState!.validate()) {
                 // If the form is valid, display a snackbar..
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Processing Data Correctly')),
-                );
+                customSnackBar(message: 'Processing Data Correctly');
 
                 Scan newScan = Scan(value: '');
                 newScan.id = widget.scan.id;

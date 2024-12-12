@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
@@ -43,25 +44,39 @@ class _HistoryPageState extends State<HistoryPage> {
                       debugPrint('type=${item?.type}');
                       BlocProvider.of<ScanBloc>(context, listen: false)
                           .add(DeleteScanEvent(id: item!.id!));
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(AppLocalizations.of(context)!
-                              .confirmDeleteAllScansBody),
-                          duration: const Duration(seconds: 3),
-                          action: SnackBarAction(
-                            label: AppLocalizations.of(context)!.undo,
-                            onPressed: () {
-                              // Code to execute.
-                              // return item into database
-                              debugPrint('item.id=${item?.id}');
-                              debugPrint('item.value=${item?.value}');
-                              debugPrint('item.type=${item?.type}');
-                              BlocProvider.of<ScanBloc>(context, listen: false)
-                                  .add(InsertScanEvent(scan: item));
-                            },
-                          ),
+
+                      customSnackBar(
+                        message: AppLocalizations.of(context)!
+                            .confirmDeleteAllScansBody,
+                        snackBarAction: SnackBarAction(
+                          label: AppLocalizations.of(context)!.undo,
+                          onPressed: () {
+                            // Code to execute.
+                            // return item into database
+                            BlocProvider.of<ScanBloc>(context, listen: false)
+                                .add(InsertScanEvent(scan: item));
+                          },
                         ),
                       );
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     content: Text(AppLocalizations.of(context)!
+                      //         .confirmDeleteAllScansBody),
+                      //     duration: const Duration(seconds: 3),
+                      //     action: SnackBarAction(
+                      //       label: AppLocalizations.of(context)!.undo,
+                      //       onPressed: () {
+                      //         // Code to execute.
+                      //         // return item into database
+                      //         debugPrint('item.id=${item?.id}');
+                      //         debugPrint('item.value=${item?.value}');
+                      //         debugPrint('item.type=${item?.type}');
+                      //         BlocProvider.of<ScanBloc>(context, listen: false)
+                      //             .add(InsertScanEvent(scan: item));
+                      //       },
+                      //     ),
+                      //   ),
+                      // );
                     },
                     // Show a red background with icon as the item is swiped away.
                     background: Container(
@@ -96,7 +111,9 @@ class _HistoryPageState extends State<HistoryPage> {
                 },
               )
             : Center(
-                child: Text(AppLocalizations.of(context)!.noScanInDatabase),
+                child: Text(
+                  AppLocalizations.of(context)!.noScanInDatabase,
+                ),
               );
       }),
     );
