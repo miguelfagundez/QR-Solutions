@@ -1,18 +1,20 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:qr_solutions/core/utils/scan_types.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
+import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/share/presentation/widgets/outline_scan_button.dart';
 
 class ScanDataForm extends StatefulWidget {
   final Scan scan;
 
-  ScanDataForm({
+  const ScanDataForm({
     super.key,
     required this.scan,
   });
@@ -27,21 +29,19 @@ class _ScanDataFormState extends State<ScanDataForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   late TextEditingController myControllerValue;
-  late TextEditingController myControllerType;
+  late String? newscanType;
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     myControllerValue.dispose();
-    myControllerType.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     myControllerValue = TextEditingController(text: widget.scan.value);
-    myControllerType =
-        TextEditingController(text: convertUiType(widget.scan.type!));
+    newscanType = widget.scan.type;
 
     return Form(
       key: _formKey,
@@ -58,13 +58,13 @@ class _ScanDataFormState extends State<ScanDataForm> {
           ),
           FormBuilderDropdown<String>(
             name: 'Types',
-            initialValue: widget.scan.type,
+            initialValue: newscanType,
             validator: FormBuilderValidators.required(),
             decoration: InputDecoration(
               label: Text(AppLocalizations.of(context)!.scanTypeTitle),
             ),
             onChanged: (value) {
-              debugPrint(value);
+              newscanType = value;
             },
             items: [
               DropdownMenuItem(
@@ -107,7 +107,15 @@ class _ScanDataFormState extends State<ScanDataForm> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Processing Data Correctly')),
                 );
-                debugPrint(myControllerValue.text);
+
+                Scan newScan = Scan(value: '');
+                newScan.id = widget.scan.id;
+                newScan.value = myControllerValue.text;
+                newScan.type = newscanType;
+
+                BlocProvider.of<ScanBloc>(context, listen: false).add(
+                  UpdateScanEvent(scan: newScan),
+                );
                 Navigator.pop(context);
               }
             },

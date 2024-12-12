@@ -17,5 +17,6 @@
   "saveScanInDatabase": "Guardar Scaner",
   "tryOpenScan": "Tratar de Abrir el Scaner",
   "scanValueTitle": "Valor del Scaner",
-  "scanTypeTitle": "Seleccione el tipo de scaner"
+  "scanTypeTitle": "Seleccione el tipo de scaner",
+  "errorLaunchScan": "Error! Chequear el tipo de scaner!"
   }

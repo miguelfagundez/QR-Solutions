@@ -74,5 +74,9 @@
   "scanTypeTitle": "Select the scan type",
   "@scanTypeTitle": {
     "description": "scanTypeTitle"
+  },
+  "errorLaunchScan": "Scan cannot be launched. Check type!",
+  "@errorLaunchScan": {
+    "description": "errorLaunchScan"
   }
 }

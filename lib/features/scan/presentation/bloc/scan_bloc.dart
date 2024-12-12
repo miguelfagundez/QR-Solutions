@@ -6,6 +6,7 @@ import 'package:qr_solutions/features/scan/domain/usecases/delete_all_scans.dart
 import 'package:qr_solutions/features/scan/domain/usecases/delete_scan.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/get_all_scans.dart';
 import 'package:qr_solutions/features/scan/domain/usecases/insert_scan.dart';
+import 'package:qr_solutions/features/scan/domain/usecases/update_scan.dart';
 
 part 'scan_event.dart';
 part 'scan_state.dart';
@@ -16,7 +17,7 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
   final GetAllScansUseCase _getAllScansUseCase;
   // final GetScanUseCase _getScanUseCase;
   final InsertScanUseCase _insertScanUseCase;
-  // final UpdateScanUseCase _updateScanUseCase;
+  final UpdateScanUseCase _updateScanUseCase;
 
   ScanBloc(
     this._deleteAllScansUseCase,
@@ -24,12 +25,25 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     this._getAllScansUseCase,
     // this._getScanUseCase,
     this._insertScanUseCase,
-    // this._updateScanUseCase,
+    this._updateScanUseCase,
   ) : super(ScanInitialState()) {
     on<DeleteAllScansEvent>(_deleteAllScansEvent);
     on<DeleteScanEvent>(_deleteScanEvent);
     on<InsertScanEvent>(_insertLastScanState);
     on<GetAllScansEvent>(_getAllScansEvent);
+    on<UpdateScanEvent>(_updateScanEvent);
+  }
+
+  _updateScanEvent(UpdateScanEvent event, Emitter<ScanState> emit) async {
+    final resp = await _updateScanUseCase(event.scan);
+
+    resp.fold(
+        (updateScanFailure) =>
+            emit(ScanDatabaseFailureState(failure: updateScanFailure)),
+        (updateScanSuccess) {
+      debugPrint('Scan was updated successfully, $updateScanSuccess');
+      add(GetAllScansEvent());
+    });
   }
 
   _deleteAllScansEvent(
