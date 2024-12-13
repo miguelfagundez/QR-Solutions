@@ -15,7 +15,7 @@ class OutlineScanButton extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 40.0,
-        vertical: 10.0,
+        vertical: 8.0,
       ),
       child: OutlinedButton(
         style: ButtonStyle(

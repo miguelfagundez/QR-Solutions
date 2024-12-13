@@ -78,5 +78,9 @@
   "errorLaunchScan": "Scan cannot be launched. Check type!",
   "@errorLaunchScan": {
     "description": "errorLaunchScan"
+  },
+  "shareScan": "Share Scan",
+  "@shareScan": {
+    "description": "shareScan"
   }
 }

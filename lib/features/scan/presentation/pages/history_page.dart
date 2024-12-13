@@ -17,7 +17,6 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   @override
   void initState() {
-    // TODO: implement initState
     BlocProvider.of<ScanBloc>(context, listen: false).add(GetAllScansEvent());
     super.initState();
   }
@@ -39,15 +38,12 @@ class _HistoryPageState extends State<HistoryPage> {
                     // Provide a function that tells the app
                     // what to do after an item has been swiped away.
                     onDismissed: (direction) {
-                      debugPrint('id=${item?.id}');
-                      debugPrint('value=${item?.value}');
-                      debugPrint('type=${item?.type}');
                       BlocProvider.of<ScanBloc>(context, listen: false)
                           .add(DeleteScanEvent(id: item!.id!));
 
                       customSnackBar(
                         message: AppLocalizations.of(context)!
-                            .confirmDeleteAllScansBody,
+                            .confirmDeleteOneScanBody,
                         snackBarAction: SnackBarAction(
                           label: AppLocalizations.of(context)!.undo,
                           onPressed: () {
@@ -95,7 +91,11 @@ class _HistoryPageState extends State<HistoryPage> {
                         convertUiTypeToIcon(item?.type ?? ''),
                         color: Theme.of(context).primaryColor,
                       ),
-                      title: Text(item?.value ?? ''),
+                      title: Text(
+                        item?.value ?? '',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       subtitle: Text(convertUiType(item?.type ?? '')),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,

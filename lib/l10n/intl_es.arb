@@ -18,5 +18,6 @@
   "tryOpenScan": "Tratar de Abrir el Scaner",
   "scanValueTitle": "Valor del Scaner",
   "scanTypeTitle": "Seleccione el tipo de scaner",
-  "errorLaunchScan": "Error! Chequear el tipo de scaner!"
+  "errorLaunchScan": "Error! Chequear el tipo de scaner!",
+  "shareScan": "Compartir Scaner"
   }

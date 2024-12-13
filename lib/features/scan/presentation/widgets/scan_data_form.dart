@@ -52,6 +52,8 @@ class _ScanDataFormState extends State<ScanDataForm> {
           FormBuilderTextField(
             name: 'name',
             controller: myControllerValue,
+            minLines: 1,
+            maxLines: 10,
             validator: FormBuilderValidators.required(),
             decoration: InputDecoration(
               label: Text(AppLocalizations.of(context)!.scanValueTitle),
