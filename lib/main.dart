@@ -9,6 +9,7 @@ import 'package:qr_solutions/di.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/scan_details_page.dart';
+import 'package:qr_solutions/features/settings/data/datasources/settings_preferences_data_source.dart';
 import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
 import 'package:qr_solutions/share/presentation/pages/home_page.dart';
 import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
@@ -16,8 +17,13 @@ import 'package:qr_solutions/features/settings/presentation/pages/settings_page.
 import 'package:qr_solutions/l10n/l10n.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   // Init Scan Bloc dependencies
   await init();
+  // Init Shared preferences
+  await SettingsPreferencesDataSourceImpl.init();
+
   runApp(const QRSolutionsApp());
 }
 
