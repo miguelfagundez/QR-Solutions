@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qr_solutions/features/settings/data/datasources/settings_preferences_data_source.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_solutions/features/settings/presentation/bloc/settings_bloc.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -9,52 +10,47 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  // TODO Temporal - testing purposes
-  late bool option;
-  final prefs = SettingsPreferencesDataSourceImpl();
-
   @override
   void initState() {
-    option = false;
-    debugPrint('initState - option = $option');
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    option = prefs.getDarkMode();
-    debugPrint('didChangeDependencies - option = $option');
+    BlocProvider.of<SettingsBloc>(context, listen: false)
+        .add(GetDarkModeEvent());
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 32,
-              ),
-              SwitchListTile.adaptive(
-                value: prefs.getDarkMode(),
-                onChanged: (value) {
-                  setState(() {
-                    option = value;
-                    prefs.setDarkMode(value);
-                    debugPrint('setState - value = $value');
-                  });
-                },
-              ),
-              const Divider(),
-            ],
+    return BlocBuilder<SettingsBloc, SettingsState>(builder: (conext, state) {
+      return Scaffold(
+        body: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 32,
+                ),
+                SwitchListTile.adaptive(
+                  value: state.isDarkMode!,
+                  onChanged: (value) {
+                    setState(() {
+                      BlocProvider.of<SettingsBloc>(context, listen: false)
+                          .add(ChangeDarkModeEvent(isDarkMode: value));
+                    });
+                  },
+                ),
+                const Divider(),
+              ],
+            ),
           ),
-        ),
-      )),
-    );
+        )),
+      );
+    });
   }
 }

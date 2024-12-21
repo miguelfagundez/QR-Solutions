@@ -7,11 +7,11 @@ import 'package:qr_solutions/features/settings/domain/usecases/set_darkmode_usec
 part 'settings_event.dart';
 part 'settings_state.dart';
 
-class ScanBloc extends Bloc<SettingsEvent, SettingsState> {
+class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final GetDarkModeUseCase _getDarkModeUseCase;
   final SetDarkModeUseCase _setDarkModeUseCase;
 
-  ScanBloc(
+  SettingsBloc(
     this._getDarkModeUseCase,
     this._setDarkModeUseCase,
   ) : super(const SettingInitialState()) {
@@ -39,7 +39,7 @@ class ScanBloc extends Bloc<SettingsEvent, SettingsState> {
             emit(SettingsFailureState(failure: getDarkModeFailure)),
         (getDarkModeSuccess) {
       debugPrint('DarkMode was taken successfully, $getDarkModeSuccess');
-      add(GetDarkModeEvent());
+      emit(ChangeDarkModeState(getDarkModeSuccess));
     });
   }
 }
