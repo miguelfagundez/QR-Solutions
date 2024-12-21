@@ -37,6 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   height: 32,
                 ),
                 SwitchListTile.adaptive(
+                  title: const Text('Dark Mode'),
                   value: state.isDarkMode!,
                   onChanged: (value) {
                     setState(() {

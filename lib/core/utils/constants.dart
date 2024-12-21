@@ -26,3 +26,6 @@ const APP_LOCALE_ES = 'es';
 
 // App preferences
 const APP_PREFERENCES_DARKMODE = 'darkmode';
+const APP_PREFERENCES_OPEN_WEBSITE = 'openwebsite';
+const APP_PREFERENCES_OPEN_PHONE = 'openphone';
+const APP_PREFERENCES_OPEN_EMAIL = 'openemail';
