@@ -19,5 +19,13 @@
   "scanValueTitle": "Valor del Scaner",
   "scanTypeTitle": "Seleccione el tipo de scaner",
   "errorLaunchScan": "Error! Chequear el tipo de scaner!",
-  "shareScan": "Compartir Scaner"
+  "shareScan": "Compartir Scaner",
+  "darkMode": "Modo Oscuro",
+  "openAutomatically": "Abrir Automaticamente",
+  "website": "Website",
+  "email": "Email",
+  "phone": "Telef",
+  "share": "Compartir",
+  "privacy": "Politica de Privacidad",
+  "version": "Version de la App"
   }

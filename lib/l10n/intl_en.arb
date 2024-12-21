@@ -82,5 +82,37 @@
   "shareScan": "Share Scan",
   "@shareScan": {
     "description": "shareScan"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "darkMode"
+  },
+  "openAutomatically": "Open Automatically",
+  "@openAutomatically": {
+    "description": "openAutomatically"
+  },
+  "website": "Website",
+  "@website": {
+    "description": "website"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "email"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "phone"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "share"
+  },
+  "privacy": "Privacy Policy",
+  "@phone": {
+    "description": "phone"
+  },
+  "version": "App Version",
+  "@version": {
+    "description": "version"
   }
 }

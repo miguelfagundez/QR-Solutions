@@ -26,53 +26,54 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          APP_NAME,
-          style: TextStyle(fontSize: 16.0),
+    return BlocBuilder<UiBloc, UiState>(builder: (context, state) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            APP_NAME,
+          ),
+          actions: [
+            (state.indexSelected == 0)
+                ? IconButton(
+                    icon: const Icon(Icons.delete_forever),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title:
+                              Text(AppLocalizations.of(context)!.confirmTitle),
+                          content: Text(AppLocalizations.of(context)!
+                              .confirmDeleteAllScansBody),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  BlocProvider.of<ScanBloc>(context,
+                                          listen: false)
+                                      .add(DeleteAllScansEvent());
+                                  Navigator.pop(context);
+                                },
+                                child: Text(AppLocalizations.of(context)!.yes)),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(AppLocalizations.of(context)!.no)),
+                          ],
+                        ),
+                      );
+                    },
+                  )
+                : const SizedBox.shrink()
+          ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.delete_forever),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                  title: Text(AppLocalizations.of(context)!.confirmTitle),
-                  content: Text(
-                      AppLocalizations.of(context)!.confirmDeleteAllScansBody),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          BlocProvider.of<ScanBloc>(context, listen: false)
-                              .add(DeleteAllScansEvent());
-                          Navigator.pop(context);
-                        },
-                        child: Text(AppLocalizations.of(context)!.yes)),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(AppLocalizations.of(context)!.no)),
-                  ],
-                ),
-              );
-            },
-          )
-        ],
-      ),
-      body: BlocBuilder<UiBloc, UiState>(
-        builder: (context, state) {
-          return IndexedStack(
-            index: state.indexSelected,
-            children: screens,
-          );
-        },
-      ),
-      bottomNavigationBar: const CustomNavigationBar(),
-      floatingActionButton: const CustomScanButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    );
+        body: IndexedStack(
+          index: state.indexSelected,
+          children: screens,
+        ),
+        bottomNavigationBar: const CustomNavigationBar(),
+        floatingActionButton: const CustomScanButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      );
+    });
   }
 }

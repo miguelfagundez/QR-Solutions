@@ -29,3 +29,6 @@ const APP_PREFERENCES_DARKMODE = 'darkmode';
 const APP_PREFERENCES_OPEN_WEBSITE = 'openwebsite';
 const APP_PREFERENCES_OPEN_PHONE = 'openphone';
 const APP_PREFERENCES_OPEN_EMAIL = 'openemail';
+
+// App data
+const APP_VERSION = 'v1.0.0';
