@@ -1,6 +1,26 @@
 # QR Solutions
 
-A Flutter apps that scan barcode/QR on both Android and iOS devices.
+A Flutter apps that scan barcode/QR on both Android and iOS devices. _(In progress)_
+
+<img src="https://img.shields.io/badge/License-MIT-brightgreen">
+
+This repository contains a basic code for developing a QR reader in Flutter. You can adapt it easily in any project. Check the code and play with it. :)
+
+Feel free to use for your own projects. You will only need to clone or donwload the project (and give it a star!).
+<img src="https://image.freepik.com/free-vector/yellow-star-white-background_275806-58.jpg" width="20">
+
+Finally, it uses the following:
+- BloC service to manage UI, data, and validations
+- Clean Architecture
+- Get package for DI
+- SharedPreferences
+- SQLite
+- Share plus package for sharing data
+- Envied package for hidden sensitive data
+- Custom Theme
+- Config -> Router included
+
+**It is still in development**
 
 ## Getting Started
 
