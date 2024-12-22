@@ -1,4 +1,4 @@
-import '../../../../core/utils/scan_types.dart';
+import '../../../../core/utils/enums.dart';
 
 class Scan {
   int? id;

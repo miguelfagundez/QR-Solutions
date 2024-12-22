@@ -2,13 +2,24 @@ part of 'settings_bloc.dart';
 
 @immutable
 abstract class SettingsState {
-  final bool? isDarkMode;
+  final Settings? settings;
 
-  const SettingsState({this.isDarkMode});
+  const SettingsState({
+    this.settings,
+  });
 }
 
 class SettingInitialState extends SettingsState {
-  const SettingInitialState() : super(isDarkMode: false);
+  SettingInitialState()
+      : super(
+          settings: Settings(
+            isDarkMode: false,
+            openWebAutomatically: false,
+            openEmailAutomatically: false,
+            openPhoneAutomatically: false,
+            language: 'en',
+          ),
+        );
 }
 
 class SettingsFailureState extends SettingsState {
@@ -19,9 +30,11 @@ class SettingsFailureState extends SettingsState {
   });
 }
 
-class ChangeDarkModeState extends SettingsState {
-  final bool newDarkModeValue;
+class ChangeSettingsState extends SettingsState {
+  final Settings newSettings;
 
-  const ChangeDarkModeState(this.newDarkModeValue)
-      : super(isDarkMode: newDarkModeValue);
+  const ChangeSettingsState(this.newSettings)
+      : super(
+          settings: newSettings,
+        );
 }

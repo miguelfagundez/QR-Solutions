@@ -62,8 +62,9 @@ class MyApp extends StatelessWidget {
           SETTINGS_ROUTE: (_) => const SettingsPage(),
           SCAN_DETAILS_ROUTE: (_) => const ScanDetailsPage(),
         },
-        theme:
-            (state.isDarkMode ?? false) ? ThemeData.dark() : ThemeData.light(),
+        theme: (state.settings?.isDarkMode ?? false)
+            ? ThemeData.dark()
+            : ThemeData.light(),
         // theme: ThemeData(
         //     primaryColor: PRIMARY_COLOR,
         //     floatingActionButtonTheme: const FloatingActionButtonThemeData(

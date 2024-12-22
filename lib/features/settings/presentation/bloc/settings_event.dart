@@ -7,12 +7,12 @@ class InitialSettingsEvent extends SettingsEvent {
   InitialSettingsEvent();
 }
 
-class GetDarkModeEvent extends SettingsEvent {
-  GetDarkModeEvent();
+class ChangeSettingsEvent extends SettingsEvent {
+  final Settings settings;
+
+  ChangeSettingsEvent({required this.settings});
 }
 
-class ChangeDarkModeEvent extends SettingsEvent {
-  final bool isDarkMode;
-
-  ChangeDarkModeEvent({required this.isDarkMode});
+class GetSettingsEvent extends SettingsEvent {
+  GetSettingsEvent();
 }

@@ -11,8 +11,8 @@ import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/features/settings/data/datasources/settings_preferences_data_source.dart';
 import 'package:qr_solutions/features/settings/data/repositories/settings_repository_impl.dart';
 import 'package:qr_solutions/features/settings/domain/repositories/settings_repository.dart';
-import 'package:qr_solutions/features/settings/domain/usecases/get_darkmode_usecase.dart';
-import 'package:qr_solutions/features/settings/domain/usecases/set_darkmode_usecase.dart';
+import 'package:qr_solutions/features/settings/domain/usecases/get_settings_usecase.dart';
+import 'package:qr_solutions/features/settings/domain/usecases/set_settings_usecase.dart';
 import 'package:qr_solutions/features/settings/presentation/bloc/settings_bloc.dart';
 
 final di = GetIt.instance;
@@ -31,10 +31,10 @@ Future<void> init() async {
   di.registerLazySingleton(() => UpdateScanUseCase(repository: di()));
   // Settings
   di.registerLazySingleton(
-    () => GetDarkModeUseCase(repository: di()),
+    () => SetSettingsUseCase(repository: di()),
   );
   di.registerLazySingleton(
-    () => SetDarkModeUseCase(repository: di()),
+    () => GetSettingsUseCase(repository: di()),
   );
 
   // --- repository ---

@@ -9,3 +9,12 @@ enum ScanTypes {
   final String value;
   const ScanTypes(this.value);
 }
+
+enum Languages {
+  en('en'),
+  es('es'),
+  ;
+
+  final String value;
+  const Languages(this.value);
+}

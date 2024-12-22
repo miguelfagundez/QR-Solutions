@@ -1,10 +1,11 @@
-import 'package:qr_solutions/features/settings/domain/entities/settings_entity.dart';
+import 'package:qr_solutions/features/settings/domain/entities/settings.dart';
 
-class SettingsModel extends SettingsEntity {
+class SettingsModel extends Settings {
   SettingsModel({
-    super.isDarkMode,
-    super.openWebAutomatically,
-    super.openEmailAutomatically,
-    super.openPhoneAutomatically,
+    required super.isDarkMode,
+    required super.openWebAutomatically,
+    required super.openEmailAutomatically,
+    required super.openPhoneAutomatically,
+    required super.language,
   });
 }

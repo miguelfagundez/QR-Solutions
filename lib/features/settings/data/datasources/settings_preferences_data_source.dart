@@ -1,9 +1,11 @@
-import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:qr_solutions/core/utils/constants.dart';
+import 'package:qr_solutions/features/settings/domain/entities/settings.dart';
+
 abstract class SettingsPreferencesDataSource {
-  bool getDarkMode();
-  bool setDarkMode(bool value);
+  bool setSettings(Settings settings);
+  Settings getSettings();
 }
 
 class SettingsPreferencesDataSourceImpl
@@ -14,17 +16,28 @@ class SettingsPreferencesDataSourceImpl
   }
 
   @override
-  bool getDarkMode() {
-    return _prefs?.getBool(APP_PREFERENCES_DARKMODE) ?? false;
-  }
-
-  @override
-  bool setDarkMode(bool value) {
+  bool setSettings(Settings settings) {
     try {
-      _prefs?.setBool(APP_PREFERENCES_DARKMODE, value);
+      _prefs?.setBool(APP_PREFERENCES_DARKMODE, settings.isDarkMode);
+      _prefs?.setString(APP_PREFERENCES_LANGUAGE, settings.language);
       return true;
     } catch (error) {
       return false;
     }
+  }
+
+  @override
+  Settings getSettings() {
+    Settings settings = Settings(
+      isDarkMode: _prefs?.getBool(APP_PREFERENCES_DARKMODE) ?? false,
+      openWebAutomatically:
+          _prefs?.getBool(APP_PREFERENCES_OPEN_WEBSITE) ?? false,
+      openEmailAutomatically:
+          _prefs?.getBool(APP_PREFERENCES_OPEN_EMAIL) ?? false,
+      openPhoneAutomatically:
+          _prefs?.getBool(APP_PREFERENCES_OPEN_PHONE) ?? false,
+      language: _prefs?.getString(APP_PREFERENCES_LANGUAGE) ?? 'en',
+    );
+    return settings;
   }
 }

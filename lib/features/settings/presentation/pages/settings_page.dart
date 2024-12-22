@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:qr_solutions/core/utils/enums.dart';
+import 'package:qr_solutions/features/settings/domain/entities/settings.dart';
 import 'package:qr_solutions/features/settings/presentation/bloc/settings_bloc.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -12,6 +14,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  String _languageItem = Languages.en.value;
+
   @override
   void initState() {
     super.initState();
@@ -19,8 +23,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void didChangeDependencies() {
+    // BlocProvider.of<SettingsBloc>(context, listen: false)
+    //     .add(GetDarkModeEvent());
     BlocProvider.of<SettingsBloc>(context, listen: false)
-        .add(GetDarkModeEvent());
+        .add(GetSettingsEvent());
     super.didChangeDependencies();
   }
 
@@ -43,13 +49,57 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 SwitchListTile.adaptive(
                   title: Text(AppLocalizations.of(context)!.darkMode),
-                  value: state.isDarkMode!,
+                  value: state.settings?.isDarkMode ?? false,
                   onChanged: (value) {
                     setState(() {
+                      // BlocProvider.of<SettingsBloc>(context, listen: false)
+                      //     .add(ChangeDarkModeEvent(isDarkMode: value));
                       BlocProvider.of<SettingsBloc>(context, listen: false)
-                          .add(ChangeDarkModeEvent(isDarkMode: value));
+                          .add(ChangeSettingsEvent(
+                        settings: Settings(
+                          isDarkMode: value,
+                          openWebAutomatically:
+                              state.settings?.openWebAutomatically ?? false,
+                          openEmailAutomatically:
+                              state.settings?.openEmailAutomatically ?? false,
+                          openPhoneAutomatically:
+                              state.settings?.openPhoneAutomatically ?? false,
+                          language: state.settings?.language ?? 'en',
+                        ),
+                      ));
                     });
                   },
+                ),
+                const Divider(),
+                Column(
+                  children: [
+                    const ListTile(
+                      title: Text('Languages:'),
+                    ),
+                    RadioListTile<String>(
+                      value: Languages.en.value,
+                      groupValue: _languageItem,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _languageItem = value.toString();
+                          debugPrint('English: $value');
+                        });
+                      },
+                      title: const Text('English'),
+                      subtitle: const Text('Default language'),
+                    ),
+                    RadioListTile<String>(
+                      value: Languages.es.value,
+                      groupValue: _languageItem,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _languageItem = value.toString();
+                          debugPrint('Spanish: $value');
+                        });
+                      },
+                      title: const Text('Spanish'),
+                    ),
+                  ],
                 ),
                 const Divider(),
                 ListTile(
@@ -58,17 +108,17 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 SwitchListTile.adaptive(
                   title: Text(AppLocalizations.of(context)!.website),
-                  value: state.isDarkMode!,
+                  value: state.settings?.openWebAutomatically ?? false,
                   onChanged: (value) {},
                 ),
                 SwitchListTile.adaptive(
                   title: Text(AppLocalizations.of(context)!.email),
-                  value: state.isDarkMode!,
+                  value: state.settings?.openEmailAutomatically ?? false,
                   onChanged: (value) {},
                 ),
                 SwitchListTile.adaptive(
                   title: Text(AppLocalizations.of(context)!.phone),
-                  value: state.isDarkMode!,
+                  value: state.settings?.openPhoneAutomatically ?? false,
                   onChanged: (value) {},
                 ),
                 const Divider(),
