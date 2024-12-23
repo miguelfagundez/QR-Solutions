@@ -27,5 +27,9 @@
   "phone": "Telef",
   "share": "Compartir",
   "privacy": "Politica de Privacidad",
-  "version": "Version de la App"
+  "version": "Version de la App",
+  "english": "Ingles",
+  "spanish": "Español",
+  "defaultLanMsg": "Idioma por defecto",
+  "appLanguage": "Idiomas"
   }

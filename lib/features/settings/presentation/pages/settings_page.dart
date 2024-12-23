@@ -79,8 +79,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 const Divider(),
                 Column(
                   children: [
-                    const ListTile(
-                      title: Text('Languages:'),
+                    ListTile(
+                      title: Text(AppLocalizations.of(context)!.appLanguage),
                     ),
                     RadioListTile<String>(
                       value: Languages.en.value,
@@ -106,8 +106,9 @@ class _SettingsPageState extends State<SettingsPage> {
                           debugPrint('English: $value');
                         });
                       },
-                      title: const Text('English'),
-                      subtitle: const Text('Default language'),
+                      title: Text(AppLocalizations.of(context)!.english),
+                      subtitle:
+                          Text(AppLocalizations.of(context)!.defaultLanMsg),
                     ),
                     RadioListTile<String>(
                       value: Languages.es.value,
@@ -133,7 +134,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           debugPrint('Spanish: $value');
                         });
                       },
-                      title: const Text('Spanish'),
+                      title: Text(AppLocalizations.of(context)!.spanish),
                     ),
                   ],
                 ),

@@ -114,5 +114,21 @@
   "version": "App Version",
   "@version": {
     "description": "version"
+  },
+  "english": "English",
+  "@english": {
+    "description": "english"
+  },
+  "spanish": "Spanish",
+  "@spanish": {
+    "description": "spanish"
+  },
+  "defaultLanMsg": "Default language",
+  "@defaultLanMsg": {
+    "description": "defaultLanMsg"
+  },
+  "appLanguage": "Language",
+  "@appLanguage": {
+    "description": "appLanguage"
   }
 }
