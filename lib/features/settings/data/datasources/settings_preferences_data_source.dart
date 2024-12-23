@@ -36,7 +36,8 @@ class SettingsPreferencesDataSourceImpl
           _prefs?.getBool(APP_PREFERENCES_OPEN_EMAIL) ?? false,
       openPhoneAutomatically:
           _prefs?.getBool(APP_PREFERENCES_OPEN_PHONE) ?? false,
-      language: _prefs?.getString(APP_PREFERENCES_LANGUAGE) ?? 'en',
+      language:
+          _prefs?.getString(APP_PREFERENCES_LANGUAGE) ?? APP_LANGUAGE_DEFAULT,
     );
     return settings;
   }

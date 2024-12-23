@@ -14,19 +14,24 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String _languageItem = Languages.en.value;
+  late String _languageItem;
 
   @override
   void initState() {
+    BlocProvider.of<SettingsBloc>(context, listen: false)
+        .add(GetSettingsEvent());
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    // BlocProvider.of<SettingsBloc>(context, listen: false)
-    //     .add(GetDarkModeEvent());
-    BlocProvider.of<SettingsBloc>(context, listen: false)
-        .add(GetSettingsEvent());
+    _languageItem = BlocProvider.of<SettingsBloc>(context, listen: false)
+            .state
+            .settings
+            ?.language ??
+        APP_LANGUAGE_DEFAULT;
+    debugPrint(
+        'didChangeDependencies (SettingsPage) - _languageItem = $_languageItem');
     super.didChangeDependencies();
   }
 
@@ -64,7 +69,8 @@ class _SettingsPageState extends State<SettingsPage> {
                               state.settings?.openEmailAutomatically ?? false,
                           openPhoneAutomatically:
                               state.settings?.openPhoneAutomatically ?? false,
-                          language: state.settings?.language ?? 'en',
+                          language:
+                              state.settings?.language ?? APP_LANGUAGE_DEFAULT,
                         ),
                       ));
                     });
@@ -82,6 +88,21 @@ class _SettingsPageState extends State<SettingsPage> {
                       onChanged: (String? value) {
                         setState(() {
                           _languageItem = value.toString();
+                          BlocProvider.of<SettingsBloc>(context, listen: false)
+                              .add(ChangeSettingsEvent(
+                            settings: Settings(
+                              isDarkMode: state.settings?.isDarkMode ?? false,
+                              openWebAutomatically:
+                                  state.settings?.openWebAutomatically ?? false,
+                              openEmailAutomatically:
+                                  state.settings?.openEmailAutomatically ??
+                                      false,
+                              openPhoneAutomatically:
+                                  state.settings?.openPhoneAutomatically ??
+                                      false,
+                              language: value ?? APP_LANGUAGE_DEFAULT,
+                            ),
+                          ));
                           debugPrint('English: $value');
                         });
                       },
@@ -94,6 +115,21 @@ class _SettingsPageState extends State<SettingsPage> {
                       onChanged: (String? value) {
                         setState(() {
                           _languageItem = value.toString();
+                          BlocProvider.of<SettingsBloc>(context, listen: false)
+                              .add(ChangeSettingsEvent(
+                            settings: Settings(
+                              isDarkMode: state.settings?.isDarkMode ?? false,
+                              openWebAutomatically:
+                                  state.settings?.openWebAutomatically ?? false,
+                              openEmailAutomatically:
+                                  state.settings?.openEmailAutomatically ??
+                                      false,
+                              openPhoneAutomatically:
+                                  state.settings?.openPhoneAutomatically ??
+                                      false,
+                              language: value ?? APP_LANGUAGE_DEFAULT,
+                            ),
+                          ));
                           debugPrint('Spanish: $value');
                         });
                       },

@@ -70,8 +70,9 @@ class MyApp extends StatelessWidget {
         //     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         //       backgroundColor: PRIMARY_COLOR,
         //     )),
-        locale: const Locale(APP_LOCALE_EN),
-        //locale: const Locale(APP_LOCALE_ES),
+        locale: (state.settings!.language == APP_LANGUAGE_DEFAULT)
+            ? const Locale(APP_LOCALE_EN)
+            : const Locale(APP_LOCALE_ES),
         supportedLocales: L10n.all,
         localizationsDelegates: const [
           AppLocalizations.delegate,

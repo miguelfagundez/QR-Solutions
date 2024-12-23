@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_solutions/core/error/failures.dart';
+import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/features/settings/domain/entities/settings.dart';
 import 'package:qr_solutions/features/settings/domain/usecases/get_settings_usecase.dart';
 import 'package:qr_solutions/features/settings/domain/usecases/set_settings_usecase.dart';

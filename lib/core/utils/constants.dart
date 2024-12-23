@@ -23,6 +23,7 @@ const PRIMARY_COLOR = Colors.deepPurple;
 // App Language
 const APP_LOCALE_EN = 'en';
 const APP_LOCALE_ES = 'es';
+const APP_LANGUAGE_DEFAULT = 'en';
 
 // App preferences
 const APP_PREFERENCES_DARKMODE = 'darkmode';

@@ -17,7 +17,7 @@ class SettingInitialState extends SettingsState {
             openWebAutomatically: false,
             openEmailAutomatically: false,
             openPhoneAutomatically: false,
-            language: 'en',
+            language: APP_LANGUAGE_DEFAULT,
           ),
         );
 }
