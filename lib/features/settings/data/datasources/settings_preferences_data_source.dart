@@ -18,8 +18,26 @@ class SettingsPreferencesDataSourceImpl
   @override
   bool setSettings(Settings settings) {
     try {
-      _prefs?.setBool(APP_PREFERENCES_DARKMODE, settings.isDarkMode);
-      _prefs?.setString(APP_PREFERENCES_LANGUAGE, settings.language);
+      _prefs?.setBool(
+        APP_PREFERENCES_DARKMODE,
+        settings.isDarkMode,
+      );
+      _prefs?.setBool(
+        APP_PREFERENCES_OPEN_WEBSITE,
+        settings.openWebAutomatically,
+      );
+      _prefs?.setBool(
+        APP_PREFERENCES_OPEN_EMAIL,
+        settings.openEmailAutomatically,
+      );
+      _prefs?.setBool(
+        APP_PREFERENCES_OPEN_PHONE,
+        settings.openPhoneAutomatically,
+      );
+      _prefs?.setString(
+        APP_PREFERENCES_LANGUAGE,
+        settings.language,
+      );
       return true;
     } catch (error) {
       return false;

@@ -29,7 +29,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
             emit(SettingsFailureState(failure: getSettingsFailure)),
         (getSettingsSuccess) {
       debugPrint(
-          'DarkMode was taken successfully, ${getSettingsSuccess.toString()}');
+          'Settings was taken successfully, ${getSettingsSuccess.isDarkMode}, ${getSettingsSuccess.openWebAutomatically}, ${getSettingsSuccess.openEmailAutomatically}, ${getSettingsSuccess.openPhoneAutomatically}');
       emit(ChangeSettingsState(getSettingsSuccess));
     });
   }
@@ -42,7 +42,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
             emit(SettingsFailureState(failure: updateSettingsFailure)),
         (updateSettingsSuccess) {
       debugPrint(
-          'DarMode Changed was updated successfully, $updateSettingsSuccess');
+          'Settings was changed successfully, ${event.settings.isDarkMode}, ${event.settings.openWebAutomatically}, ${event.settings.openEmailAutomatically}, ${event.settings.openPhoneAutomatically}');
       add(GetSettingsEvent());
     });
   }

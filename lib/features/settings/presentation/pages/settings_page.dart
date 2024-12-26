@@ -57,8 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   value: state.settings?.isDarkMode ?? false,
                   onChanged: (value) {
                     setState(() {
-                      // BlocProvider.of<SettingsBloc>(context, listen: false)
-                      //     .add(ChangeDarkModeEvent(isDarkMode: value));
+                      debugPrint('');
                       BlocProvider.of<SettingsBloc>(context, listen: false)
                           .add(ChangeSettingsEvent(
                         settings: Settings(
@@ -146,17 +145,68 @@ class _SettingsPageState extends State<SettingsPage> {
                 SwitchListTile.adaptive(
                   title: Text(AppLocalizations.of(context)!.website),
                   value: state.settings?.openWebAutomatically ?? false,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    // -- Website --
+                    setState(() {
+                      BlocProvider.of<SettingsBloc>(context, listen: false)
+                          .add(ChangeSettingsEvent(
+                        settings: Settings(
+                          isDarkMode: state.settings?.isDarkMode ?? false,
+                          openWebAutomatically: value,
+                          openEmailAutomatically:
+                              state.settings?.openEmailAutomatically ?? false,
+                          openPhoneAutomatically:
+                              state.settings?.openPhoneAutomatically ?? false,
+                          language:
+                              state.settings?.language ?? APP_LANGUAGE_DEFAULT,
+                        ),
+                      ));
+                    });
+                  },
                 ),
                 SwitchListTile.adaptive(
                   title: Text(AppLocalizations.of(context)!.email),
                   value: state.settings?.openEmailAutomatically ?? false,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    // -- Email --
+                    setState(() {
+                      BlocProvider.of<SettingsBloc>(context, listen: false)
+                          .add(ChangeSettingsEvent(
+                        settings: Settings(
+                          isDarkMode: state.settings?.isDarkMode ?? false,
+                          openWebAutomatically:
+                              state.settings?.openWebAutomatically ?? false,
+                          openEmailAutomatically: value,
+                          openPhoneAutomatically:
+                              state.settings?.openPhoneAutomatically ?? false,
+                          language:
+                              state.settings?.language ?? APP_LANGUAGE_DEFAULT,
+                        ),
+                      ));
+                    });
+                  },
                 ),
                 SwitchListTile.adaptive(
                   title: Text(AppLocalizations.of(context)!.phone),
                   value: state.settings?.openPhoneAutomatically ?? false,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    // -- Phone --
+                    setState(() {
+                      BlocProvider.of<SettingsBloc>(context, listen: false)
+                          .add(ChangeSettingsEvent(
+                        settings: Settings(
+                          isDarkMode: state.settings?.isDarkMode ?? false,
+                          openWebAutomatically:
+                              state.settings?.openWebAutomatically ?? false,
+                          openEmailAutomatically:
+                              state.settings?.openEmailAutomatically ?? false,
+                          openPhoneAutomatically: value,
+                          language:
+                              state.settings?.language ?? APP_LANGUAGE_DEFAULT,
+                        ),
+                      ));
+                    });
+                  },
                 ),
                 const Divider(),
                 ListTile(
