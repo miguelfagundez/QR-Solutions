@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_solutions/core/utils/enums.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:qr_solutions/features/settings/presentation/bloc/settings_bloc.dart';
 
 class CustomScanButton extends StatelessWidget {
   const CustomScanButton({Key? key}) : super(key: key);
@@ -30,7 +32,27 @@ class CustomScanButton extends StatelessWidget {
         final Scan scan = Scan(value: barcodeScanRes);
         BlocProvider.of<ScanBloc>(context).add(InsertScanEvent(scan: scan));
 
-        launchScanIfPossible(context, scan);
+        bool web = BlocProvider.of<SettingsBloc>(context, listen: false)
+                .state
+                .settings
+                ?.openWebAutomatically ??
+            false;
+        bool email = BlocProvider.of<SettingsBloc>(context, listen: false)
+                .state
+                .settings
+                ?.openEmailAutomatically ??
+            false;
+        bool phone = BlocProvider.of<SettingsBloc>(context, listen: false)
+                .state
+                .settings
+                ?.openPhoneAutomatically ??
+            false;
+
+        if ((web && scan.type == ScanTypes.http.name) ||
+            (email && scan.type == ScanTypes.email.name) ||
+            (phone && scan.type == ScanTypes.phone.name)) {
+          launchScanIfPossible(context, scan);
+        }
       },
     );
   }
