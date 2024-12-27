@@ -51,7 +51,7 @@ class CustomScanButton extends StatelessWidget {
         if ((web && scan.type == ScanTypes.http.name) ||
             (email && scan.type == ScanTypes.email.name) ||
             (phone && scan.type == ScanTypes.phone.name)) {
-          launchScanIfPossible(context, scan);
+          launchScanIfPossible(scan);
         }
       },
     );

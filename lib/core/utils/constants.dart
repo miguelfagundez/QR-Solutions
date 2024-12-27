@@ -34,3 +34,7 @@ const APP_PREFERENCES_LANGUAGE = 'language';
 
 // App data
 const APP_VERSION = 'v1.0.0';
+
+// Web
+const APP_WEB_PRIVACY_POLICY = 'https://miguelfagundez.com/privacidad';
+const APP_WEB_SHARE_GOOGLE_PLAY = 'https://miguelfagundez.com';

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/enums.dart';
+import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/settings/domain/entities/settings.dart';
 import 'package:qr_solutions/features/settings/presentation/bloc/settings_bloc.dart';
 
@@ -209,14 +210,24 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 const Divider(),
-                ListTile(
-                  title: Text(
-                      '${AppLocalizations.of(context)!.share} ${AppLocalizations.of(context)!.appTitle}'),
-                  trailing: const Icon(Icons.share_rounded),
+                GestureDetector(
+                  child: ListTile(
+                    title: Text(
+                        '${AppLocalizations.of(context)!.share} ${AppLocalizations.of(context)!.appTitle}'),
+                    trailing: const Icon(Icons.share_rounded),
+                  ),
+                  onTap: () {
+                    launchWebsite(APP_WEB_SHARE_GOOGLE_PLAY);
+                  },
                 ),
-                ListTile(
-                  title: Text(AppLocalizations.of(context)!.privacy),
-                  trailing: const Icon(Icons.privacy_tip_outlined),
+                GestureDetector(
+                  child: ListTile(
+                    title: Text(AppLocalizations.of(context)!.privacy),
+                    trailing: const Icon(Icons.privacy_tip_outlined),
+                  ),
+                  onTap: () {
+                    launchWebsite(APP_WEB_PRIVACY_POLICY);
+                  },
                 ),
                 ListTile(
                   title: Text('${AppLocalizations.of(context)!.version}: '),

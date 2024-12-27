@@ -99,7 +99,7 @@ class _ScanDetailsPageState extends State<ScanDetailsPage> {
           ),
           OutlineScanButton(
             onTap: () {
-              launchScanIfPossible(context, scan);
+              launchScanIfPossible(scan);
             },
             widget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
