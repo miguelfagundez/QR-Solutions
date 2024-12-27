@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_solutions/config/theme/colors.dart';
 import 'package:qr_solutions/core/utils/enums.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
@@ -17,7 +18,7 @@ class CustomScanButton extends StatelessWidget {
     return FloatingActionButton(
       child: const Icon(
         Icons.camera_alt_outlined,
-        color: Colors.white60,
+        color: AppColors.iconColorScanButton,
       ),
       onPressed: () async {
         String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(

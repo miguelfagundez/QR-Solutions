@@ -89,7 +89,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     child: ListTile(
                       leading: Icon(
                         convertUiTypeToIcon(item?.type ?? ''),
-                        color: Theme.of(context).primaryColor,
+                        // color: Theme.of(context).primaryColor,
                       ),
                       title: Text(
                         item?.value ?? '',

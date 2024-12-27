@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:qr_solutions/config/theme/app_theme.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/core/utils/globals.dart';
 import 'package:qr_solutions/di.dart';
@@ -63,13 +64,11 @@ class MyApp extends StatelessWidget {
           SCAN_DETAILS_ROUTE: (_) => const ScanDetailsPage(),
         },
         theme: (state.settings?.isDarkMode ?? false)
-            ? ThemeData.dark()
-            : ThemeData.light(),
-        // theme: ThemeData(
-        //     primaryColor: PRIMARY_COLOR,
-        //     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        //       backgroundColor: PRIMARY_COLOR,
-        //     )),
+            ? AppTheme.darkTheme
+            : AppTheme.lightTheme,
+        // theme: (state.settings?.isDarkMode ?? false)
+        //     ? ThemeData.dark()
+        //     : ThemeData.light(),
         locale: (state.settings!.language == APP_LANGUAGE_DEFAULT)
             ? const Locale(APP_LOCALE_EN)
             : const Locale(APP_LOCALE_ES),
