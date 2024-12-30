@@ -130,5 +130,9 @@
   "appLanguage": "Language",
   "@appLanguage": {
     "description": "appLanguage"
+  },
+  "saveScanSuccess": "Scan saved successfully",
+  "@saveScanSuccess": {
+    "description": "saveScanSuccess"
   }
 }

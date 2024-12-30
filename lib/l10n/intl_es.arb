@@ -31,5 +31,6 @@
   "english": "Ingles",
   "spanish": "Español",
   "defaultLanMsg": "Idioma por defecto",
-  "appLanguage": "Idiomas"
+  "appLanguage": "Idiomas",
+  "saveScanSuccess": "Scan guardado satisfactoriamente"
   }

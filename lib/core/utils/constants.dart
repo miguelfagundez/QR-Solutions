@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 // Share Preferences
-import 'package:flutter/material.dart';
 
 const SCAN_LANGUAGE_SETTINGS = "Scan_Language_Settings";
 
@@ -16,6 +15,10 @@ const HOME_ROUTE = 'home';
 const HISTORY_ROUTE = 'history';
 const SETTINGS_ROUTE = 'settings';
 const SCAN_DETAILS_ROUTE = 'details';
+const HOME_INDEX = 0;
+const HISTORY_INDEX = 1;
+const SETTINGS_INDEX = 2;
+const DETAILS_INDEX = 3;
 
 // App Language
 const APP_LOCALE_EN = 'en';

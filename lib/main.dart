@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:qr_solutions/config/routes/app_route.dart';
 import 'package:qr_solutions/config/theme/app_theme.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/core/utils/globals.dart';
@@ -56,13 +57,17 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: APP_NAME,
         scaffoldMessengerKey: snackbarKey,
-        initialRoute: INITIAL_ROUTE,
-        routes: {
-          HOME_ROUTE: (_) => const HomePage(),
-          HISTORY_ROUTE: (_) => const HistoryPage(),
-          SETTINGS_ROUTE: (_) => const SettingsPage(),
-          SCAN_DETAILS_ROUTE: (_) => const ScanDetailsPage(),
-        },
+        initialRoute: AppRoutes.initialRoute,
+        routes: AppRoutes.getAppRoutes(),
+        onGenerateRoute: (settings) =>
+            AppRoutes.onGenerateDefaultRoute(settings),
+        // initialRoute: INITIAL_ROUTE,
+        // routes: {
+        //   HOME_ROUTE: (_) => const HomePage(),
+        //   HISTORY_ROUTE: (_) => const HistoryPage(),
+        //   SETTINGS_ROUTE: (_) => const SettingsPage(),
+        //   SCAN_DETAILS_ROUTE: (_) => const ScanDetailsPage(),
+        // },
         theme: (state.settings?.isDarkMode ?? false)
             ? AppTheme.darkTheme
             : AppTheme.lightTheme,

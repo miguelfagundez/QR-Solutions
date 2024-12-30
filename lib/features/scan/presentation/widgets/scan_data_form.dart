@@ -107,7 +107,8 @@ class _ScanDataFormState extends State<ScanDataForm> {
             onTap: () {
               if (_formKey.currentState!.validate()) {
                 // If the form is valid, display a snackbar..
-                customSnackBar(message: 'Processing Data Correctly');
+                customSnackBar(
+                    message: AppLocalizations.of(context)!.saveScanSuccess);
 
                 Scan newScan = Scan(value: '');
                 newScan.id = widget.scan.id;
