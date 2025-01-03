@@ -19,7 +19,7 @@
   "@settings": {
     "description": "Settings"
   },
-  "creator": "Creator",
+  "creator": "Create",
   "@creator": {
     "description": "Creator"
   },

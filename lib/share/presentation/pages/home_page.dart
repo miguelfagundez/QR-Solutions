@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:provider/provider.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
+import 'package:qr_solutions/features/scan/presentation/pages/create_qr_page.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
+import 'package:qr_solutions/features/scan/presentation/widgets/create_qr_widget.dart';
 import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
 import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
 // import 'package:qr_solutions/share/presentation/providers/ui_provider.dart';
@@ -21,6 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final screens = [
     const HistoryPage(),
+    const CreateQrPage(),
     const SettingsPage(),
   ];
 

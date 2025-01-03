@@ -66,6 +66,8 @@ dependencies:
   share_plus: ^7.2.2
   # https://pub.dev/packages/shared_preferences
   shared_preferences: ^2.2.3
+  # https://pub.dev/packages/qr_flutter/install
+  qr_flutter: ^4.1.0
 
 dev_dependencies:
   flutter_test:
