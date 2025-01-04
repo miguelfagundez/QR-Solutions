@@ -134,5 +134,9 @@
   "saveScanSuccess": "Scan saved successfully",
   "@saveScanSuccess": {
     "description": "saveScanSuccess"
+  },
+  "insertValue": "Insert a value",
+  "@insertValue": {
+    "description": "insertValue"
   }
 }

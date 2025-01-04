@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/features/scan/presentation/bloc/scan_bloc.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/create_qr_page.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
-import 'package:qr_solutions/features/scan/presentation/widgets/create_qr_widget.dart';
 import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
 import 'package:qr_solutions/share/presentation/bloc/ui/ui_bloc.dart';
-// import 'package:qr_solutions/share/presentation/providers/ui_provider.dart';
 import 'package:qr_solutions/share/presentation/widgets/custom_navegation_bar.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/share/presentation/widgets/custom_scan_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -74,7 +71,8 @@ class _HomePageState extends State<HomePage> {
           children: screens,
         ),
         bottomNavigationBar: const CustomNavigationBar(),
-        floatingActionButton: const CustomScanButton(),
+        floatingActionButton:
+            (state.indexSelected == 0) ? const CustomScanButton() : Container(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
     });

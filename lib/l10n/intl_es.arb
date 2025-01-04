@@ -32,5 +32,6 @@
   "spanish": "Español",
   "defaultLanMsg": "Idioma por defecto",
   "appLanguage": "Idiomas",
-  "saveScanSuccess": "Scan guardado satisfactoriamente"
+  "saveScanSuccess": "Scan guardado satisfactoriamente",
+  "insertValue": "Insertar un valor"
   }

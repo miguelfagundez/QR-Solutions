@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_solutions/core/utils/enums.dart';
 import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -78,6 +79,21 @@ String convertUiType(String type) {
   }
 }
 
+String convertDatabaseType(String type) {
+  switch (type) {
+    case 'Web':
+      return ScanTypes.http.name;
+    case 'Geo':
+      return ScanTypes.geo.name;
+    case 'Phone':
+      return ScanTypes.phone.name;
+    case 'Email':
+      return ScanTypes.email.name;
+    default:
+      return ScanTypes.other.name;
+  }
+}
+
 IconData convertUiTypeToIcon(String type) {
   switch (type) {
     case 'http':
@@ -91,4 +107,8 @@ IconData convertUiTypeToIcon(String type) {
     default:
       return Icons.archive_outlined;
   }
+}
+
+List<String> returnListOfScanTypes() {
+  return <String>['Other', 'Web', 'Phone', 'Geo', 'Email'];
 }
