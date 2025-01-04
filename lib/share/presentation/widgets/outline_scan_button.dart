@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class OutlineScanButton extends StatelessWidget {
-  final Function() onTap;
+  final Function()? onTap;
   final Widget widget;
 
   const OutlineScanButton({
     super.key,
-    required this.onTap,
+    this.onTap,
     required this.widget,
   });
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
+import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 import 'package:qr_solutions/share/presentation/widgets/outline_scan_button.dart';
 
 class CreateQrWidget extends StatefulWidget {
@@ -57,20 +58,28 @@ class _QrCreatorState extends State<CreateQrWidget> {
           const SizedBox(
             height: 25,
           ),
-          (userInput != null)
-              ? QrImageView(
-                  data: userInput.toString(),
-                  version: QrVersions.auto,
-                  size: 250.0,
-                )
-              : Container(),
+          (userInput == null)
+              ? Container()
+              : (userInput!.isEmpty)
+                  ? Container()
+                  : QrImageView(
+                      data: userInput.toString(),
+                      version: QrVersions.auto,
+                      size: 250.0,
+                    ),
           const SizedBox(
             height: 25,
           ),
           OutlineScanButton(
-            onTap: () {
-              // Save scan value & type
-            },
+            onTap: (userInput == null)
+                ? null
+                : (userInput!.isEmpty)
+                    ? null
+                    : () {
+                        // Save scan value & type
+                        //Saving ..
+                        customSnackBar(message: 'saving userInput in DB');
+                      },
             widget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
