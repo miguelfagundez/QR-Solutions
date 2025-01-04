@@ -21,6 +21,9 @@ class _QrCreatorState extends State<CreateQrWidget> {
   String userScanType = listOfScanTypes.first;
   String databaseScanType = convertDatabaseType(listOfScanTypes.first);
   final myController = TextEditingController();
+  bool isWeb = false;
+  bool isPhone = false;
+  final String https = 'https://';
 
   @override
   void dispose() {
@@ -43,6 +46,8 @@ class _QrCreatorState extends State<CreateQrWidget> {
                 });
               },
               controller: myController,
+              keyboardType:
+                  (isPhone) ? TextInputType.phone : TextInputType.text,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.insertValue,
               ),
@@ -57,8 +62,18 @@ class _QrCreatorState extends State<CreateQrWidget> {
               onChanged: (String? value) {
                 // This is called when the user selects an scan type.
                 setState(() {
+                  isWeb = false;
+                  isPhone = false;
+                  if (value == 'Web') {
+                    isWeb = true;
+                  } else {
+                    if (value == 'Phone') {
+                      isPhone = true;
+                    }
+                  }
                   userScanType = value!;
                   databaseScanType = convertDatabaseType(userScanType);
+                  myController.text = '';
                 });
               },
               items:
@@ -92,9 +107,14 @@ class _QrCreatorState extends State<CreateQrWidget> {
                       : () {
                           // Save scan value & type
                           //Saving ..
+                          String tmp = myController.text;
+                          if (isWeb && !tmp.contains(https)) {
+                            myController.text = https + myController.text;
+                          }
                           final Scan scan = Scan(
-                              value: myController.text.toString(),
-                              type: databaseScanType);
+                            value: myController.text.toString(),
+                            type: databaseScanType,
+                          );
 
                           BlocProvider.of<ScanBloc>(context)
                               .add(InsertScanEvent(scan: scan));

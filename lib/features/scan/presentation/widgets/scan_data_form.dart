@@ -31,6 +31,17 @@ class _ScanDataFormState extends State<ScanDataForm> {
   // of the TextField.
   late TextEditingController myControllerValue;
   late String? newscanType;
+  bool isWeb = false;
+  final String https = 'https://';
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    if (widget.scan.type == 'http') {
+      isWeb = true;
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {
@@ -67,7 +78,11 @@ class _ScanDataFormState extends State<ScanDataForm> {
               label: Text(AppLocalizations.of(context)!.scanTypeTitle),
             ),
             onChanged: (value) {
+              isWeb = false;
               newscanType = value;
+              if (value == 'http') {
+                isWeb = true;
+              }
             },
             items: [
               DropdownMenuItem(
@@ -109,6 +124,10 @@ class _ScanDataFormState extends State<ScanDataForm> {
                 // If the form is valid, display a snackbar..
                 customSnackBar(
                     message: AppLocalizations.of(context)!.saveScanSuccess);
+                String tmp = myControllerValue.text;
+                if (isWeb && !tmp.contains(https)) {
+                  myControllerValue.text = https + myControllerValue.text;
+                }
 
                 Scan newScan = Scan(value: '');
                 newScan.id = widget.scan.id;
