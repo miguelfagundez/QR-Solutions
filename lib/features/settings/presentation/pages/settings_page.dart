@@ -38,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsBloc, SettingsState>(builder: (conext, state) {
+    return BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
       return Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(32.0),
