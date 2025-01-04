@@ -33,5 +33,6 @@
   "defaultLanMsg": "Idioma por defecto",
   "appLanguage": "Idiomas",
   "saveScanSuccess": "Scan guardado satisfactoriamente",
-  "insertValue": "Insertar un valor"
+  "insertValue": "Insertar un valor",
+  "launchErrorMsg": "Error! Chequee el formato e intente de nuevo!"
   }

@@ -138,5 +138,9 @@
   "insertValue": "Insert a value",
   "@insertValue": {
     "description": "insertValue"
+  },
+  "launchErrorMsg": "Error! Check the format and Try again!",
+  "@insertValue": {
+    "description": "insertValue"
   }
 }

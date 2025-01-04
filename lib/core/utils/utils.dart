@@ -5,7 +5,7 @@ import 'package:qr_solutions/features/scan/domain/entities/scan.dart';
 import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-launchWebsite(String website) async {
+Future<bool> launchWebsite(String website) async {
   final url = website;
   final uriUrl = Uri.parse(url);
   // Checking open website
@@ -15,11 +15,13 @@ launchWebsite(String website) async {
     if (kDebugMode) {
       print('Could not launch $url');
     }
-    throw 'Could not launch $url';
+    //throw 'Could not launch $url';
+    return false;
   }
+  return true;
 }
 
-launchEmail(String email) async {
+Future<bool> launchEmail(String email) async {
   final uriEmail = Uri.parse('mailto:$email?subject=Subject&body=Body');
   // Checking open email
   if (await canLaunchUrl(uriEmail)) {
@@ -28,11 +30,13 @@ launchEmail(String email) async {
     if (kDebugMode) {
       print('Could not launch $uriEmail');
     }
-    throw 'Could not launch $uriEmail';
+    //throw 'Could not launch $uriEmail';
+    return false;
   }
+  return true;
 }
 
-launchPhone(String phoneNumber) async {
+Future<bool> launchPhone(String phoneNumber) async {
   final uriPhone = Uri.parse('tel:$phoneNumber');
   // Checking open phone number
   if (await canLaunchUrl(uriPhone)) {
@@ -41,26 +45,30 @@ launchPhone(String phoneNumber) async {
     if (kDebugMode) {
       print('Could not launch $uriPhone');
     }
-    throw 'Could not launch $uriPhone';
+    //throw 'Could not launch $uriPhone';
+    return false;
   }
+  return true;
 }
 
-launchScanIfPossible(Scan scan) async {
+Future<bool> launchScanIfPossible(Scan scan) async {
   if (scan.type == 'http') {
     debugPrint('It is a website..');
-    launchWebsite(scan.value);
+    return launchWebsite(scan.value);
   } else if (scan.type == 'email') {
     debugPrint('It is a email address..');
-    launchEmail(scan.value);
+    return launchEmail(scan.value);
   } else if (scan.type == 'phone') {
     debugPrint('It is a phone number..');
-    launchPhone(scan.value);
+    return launchPhone(scan.value);
   } else if (scan.type == 'geo') {
     debugPrint('It is a map..');
     customSnackBar(message: 'It is a map..');
+    return false;
   } else {
     debugPrint('It is another format..');
     customSnackBar(message: 'It is another format..');
+    return false;
   }
 }
 

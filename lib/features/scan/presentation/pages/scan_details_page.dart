@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -98,8 +101,13 @@ class _ScanDetailsPageState extends State<ScanDetailsPage> {
             ),
           ),
           OutlineScanButton(
-            onTap: () {
-              launchScanIfPossible(scan);
+            onTap: () async {
+              bool success = await launchScanIfPossible(scan);
+              if (!success) {
+                customSnackBar(
+                  message: AppLocalizations.of(context)!.launchErrorMsg,
+                );
+              }
             },
             widget: Row(
               mainAxisAlignment: MainAxisAlignment.center,

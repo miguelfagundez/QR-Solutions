@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_solutions/core/utils/constants.dart';
@@ -6,6 +8,7 @@ import 'package:qr_solutions/core/utils/enums.dart';
 import 'package:qr_solutions/core/utils/utils.dart';
 import 'package:qr_solutions/features/settings/domain/entities/settings.dart';
 import 'package:qr_solutions/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -216,8 +219,14 @@ class _SettingsPageState extends State<SettingsPage> {
                         '${AppLocalizations.of(context)!.share} ${AppLocalizations.of(context)!.appTitle}'),
                     trailing: const Icon(Icons.share_rounded),
                   ),
-                  onTap: () {
-                    launchWebsite(APP_WEB_SHARE_GOOGLE_PLAY);
+                  onTap: () async {
+                    bool success =
+                        await launchWebsite(APP_WEB_SHARE_GOOGLE_PLAY);
+                    if (!success) {
+                      customSnackBar(
+                        message: AppLocalizations.of(context)!.launchErrorMsg,
+                      );
+                    }
                   },
                 ),
                 GestureDetector(
@@ -225,8 +234,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: Text(AppLocalizations.of(context)!.privacy),
                     trailing: const Icon(Icons.privacy_tip_outlined),
                   ),
-                  onTap: () {
-                    launchWebsite(APP_WEB_PRIVACY_POLICY);
+                  onTap: () async {
+                    bool success = await launchWebsite(APP_WEB_PRIVACY_POLICY);
+                    if (!success) {
+                      customSnackBar(
+                        message: AppLocalizations.of(context)!.launchErrorMsg,
+                      );
+                    }
                   },
                 ),
                 ListTile(
