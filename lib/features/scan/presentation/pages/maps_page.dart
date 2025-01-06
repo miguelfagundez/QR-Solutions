@@ -31,16 +31,42 @@ class _MapsPageState extends State<MapsPage> {
       //target: LatLng(37.42796133580664, -122.085749655962),
       target: scan.getLatLng(),
       zoom: 17,
+      tilt: 25.0,
     );
+
+    Set<Marker> centerMarker = Set<Marker>();
+    centerMarker.add(Marker(
+      markerId: const MarkerId('center-marker'),
+      position: scan.getLatLng(),
+    ));
 
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           APP_NAME,
         ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final GoogleMapController newController =
+                  await _controller.future;
+              newController.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: scan.getLatLng(),
+                    zoom: 17,
+                    tilt: 25.0,
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.location_searching),
+          )
+        ],
       ),
       body: GoogleMap(
         mapType: MapType.normal,
+        markers: centerMarker,
         initialCameraPosition: initialView,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
