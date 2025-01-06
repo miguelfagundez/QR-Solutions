@@ -68,6 +68,8 @@ dependencies:
   shared_preferences: ^2.2.3
   # https://pub.dev/packages/qr_flutter/install
   qr_flutter: ^4.1.0
+  # https://pub.dev/packages/google_maps_flutter
+  google_maps_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:
