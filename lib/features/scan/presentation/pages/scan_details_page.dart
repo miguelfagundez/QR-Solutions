@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:qr_solutions/core/utils/constants.dart';
 import 'package:qr_solutions/share/presentation/widgets/custom_snackbar.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,11 +103,25 @@ class _ScanDetailsPageState extends State<ScanDetailsPage> {
           ),
           OutlineScanButton(
             onTap: () async {
-              bool success = await launchScanIfPossible(scan);
-              if (!success) {
-                customSnackBar(
-                  message: AppLocalizations.of(context)!.launchErrorMsg,
-                );
+              if (scan.type == 'geo') {
+                try {
+                  Navigator.pushNamed(
+                    context,
+                    MAPS_ROUTE,
+                    arguments: scan,
+                  );
+                } catch (error) {
+                  customSnackBar(
+                    message: AppLocalizations.of(context)!.launchErrorMsg,
+                  );
+                }
+              } else {
+                bool success = await launchScanIfPossible(scan);
+                if (!success) {
+                  customSnackBar(
+                    message: AppLocalizations.of(context)!.launchErrorMsg,
+                  );
+                }
               }
             },
             widget: Row(

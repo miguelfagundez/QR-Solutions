@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_solutions/config/routes/route_model.dart';
 
 import 'package:qr_solutions/features/scan/presentation/pages/history_page.dart';
+import 'package:qr_solutions/features/scan/presentation/pages/maps_page.dart';
 import 'package:qr_solutions/features/scan/presentation/pages/scan_details_page.dart';
 import 'package:qr_solutions/share/presentation/pages/home_page.dart';
 import 'package:qr_solutions/features/settings/presentation/pages/settings_page.dart';
@@ -35,6 +36,12 @@ abstract class AppRoutes {
       route: 'details',
       screen: const ScanDetailsPage(),
       icon: Icons.details,
+    ),
+    RouteModel(
+      name: 'Maps',
+      route: 'maps',
+      screen: const MapsPage(),
+      icon: Icons.map,
     ),
   ];
 

@@ -15,6 +15,7 @@ const HOME_ROUTE = 'home';
 const HISTORY_ROUTE = 'history';
 const SETTINGS_ROUTE = 'settings';
 const SCAN_DETAILS_ROUTE = 'details';
+const MAPS_ROUTE = 'maps';
 const HOME_INDEX = 0;
 const HISTORY_INDEX = 1;
 const SETTINGS_INDEX = 2;

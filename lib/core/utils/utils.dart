@@ -61,14 +61,11 @@ Future<bool> launchScanIfPossible(Scan scan) async {
   } else if (scan.type == 'phone') {
     debugPrint('It is a phone number..');
     return launchPhone(scan.value);
-  } else if (scan.type == 'geo') {
-    debugPrint('It is a map..');
-    customSnackBar(message: 'It is a map..');
-    return false;
   } else {
+    // geo format is being checked outside
     debugPrint('It is another format..');
     customSnackBar(message: 'It is another format..');
-    return false;
+    return true;
   }
 }
 

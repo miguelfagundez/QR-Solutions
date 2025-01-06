@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
+
 import '../../../../core/utils/enums.dart';
 
 class Scan {
@@ -28,6 +31,21 @@ class Scan {
           }
         }
       }
+    }
+  }
+
+// Only available for geo values
+  LatLng getLatLng() {
+    try {
+      final latLng = value.substring(4).split(',');
+
+      final latitude = double.parse(latLng[0]);
+      final longitude = double.parse(latLng[1]);
+
+      return LatLng(latitude, longitude);
+    } catch (error) {
+      debugPrint(error.toString());
+      return const LatLng(0.0, 0.0);
     }
   }
 }
