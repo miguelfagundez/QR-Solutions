@@ -1,6 +1,9 @@
 # QR Solutions
 
-A Flutter apps that scan barcode/QR on both Android and iOS devices. _(In progress)_
+A Flutter apps that scan barcode/QR on both Android and iOS devices.
+
+Version 1.0.0 was already published on the Google Play Store:
+[QR Solutions](https://play.google.com/store/apps/details?id=com.miguelfagundez.qr_solutions)
 
 <img src="https://img.shields.io/badge/License-MIT-brightgreen">
 
